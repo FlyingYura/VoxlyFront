@@ -1,0 +1,180 @@
+.world-map-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  overflow: visible;
+}
+
+.world-map-svg {
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  display: block;
+  background: transparent;
+}
+
+.country-path {
+  transition: fill 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+  pointer-events: all;
+  fill: #a0c8f0;
+  stroke: #2c3e50;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+}
+
+.country-clickable {
+  cursor: pointer;
+}
+
+.country-clickable:hover {
+  stroke: #2c3e50 !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.country-hovered {
+  stroke: #2c3e50 !important;
+  stroke-width: 2.5px !important;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  transform: scale(1.01);
+  transform-origin: center;
+  z-index: 10;
+}
+
+.country-flag {
+  position: absolute;
+  width: 48px;
+  height: 32px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 2px solid white;
+  pointer-events: none;
+  z-index: 20;
+  object-fit: cover;
+  animation: flagFadeIn 0.3s ease-out;
+}
+
+@keyframes flagFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.course-tooltip {
+  position: absolute;
+  background: #ffffff;
+  border: 2px solid #8B7355;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 280px;
+  max-width: 320px;
+  pointer-events: none;
+  animation: tooltipFadeIn 0.2s ease-out;
+  transform: translate(0, -100%);
+  margin-top: -10px;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tooltip-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tooltip-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  line-height: 1.3;
+}
+
+.tooltip-description {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #5a5a5a;
+  line-height: 1.4;
+}
+
+.tooltip-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.tooltip-level,
+.tooltip-duration,
+.tooltip-price {
+  font-size: 0.85rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.tooltip-level {
+  background: #e8f4f8;
+  color: #2c5f7d;
+}
+
+.tooltip-duration {
+  background: #f0f4e8;
+  color: #5a7d2c;
+}
+
+.tooltip-price {
+  background: #fff4e8;
+  color: #8B7355;
+}
+
+.tooltip-hint {
+  margin: 0;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #8B7355;
+  font-style: italic;
+  text-align: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e8e5e0;
+}
+
+@media (max-width: 768px) {
+  .world-map-container {
+    padding: 0;
+  }
+
+  .world-map-svg {
+    min-height: 400px;
+  }
+
+  .course-tooltip {
+    min-width: 240px;
+    max-width: 280px;
+    font-size: 0.9rem;
+  }
+
+  .country-flag {
+    width: 40px;
+    height: 26px;
+  }
+  
+}

@@ -1,0 +1,226 @@
+.schedule-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: #faf8f5;
+}
+
+.schedule-page h1 {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.schedule-course-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.schedule-course-title h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.course-selector {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.course-selector label {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.course-select {
+  padding: 12px 16px;
+  border: 2px solid #e8e5e0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #2c3e50;
+  font-size: 16px;
+  cursor: pointer;
+  flex: 1;
+  max-width: 400px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.course-select:hover {
+  border-color: #8B7355;
+}
+
+.course-select:focus {
+  outline: none;
+  border-color: #8B7355;
+  box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+}
+
+/* Стилізована таблиця розкладу */
+.schedule-table-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  overflow-x: auto;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 800px;
+}
+
+.schedule-table thead {
+  background: linear-gradient(135deg, #8B7355 0%, #a68b6b 100%);
+  color: #ffffff;
+}
+
+.schedule-table th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: none;
+}
+
+.schedule-table th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.schedule-table th:last-child {
+  border-top-right-radius: 8px;
+}
+
+.schedule-table tbody tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.schedule-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.schedule-table tbody tr:hover {
+  background: #faf8f5;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
+}
+
+.schedule-table td {
+  padding: 1.25rem 1.25rem;
+  vertical-align: middle;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.schedule-date-cell {
+  font-weight: 600;
+  color: #8B7355;
+  white-space: nowrap;
+}
+
+.schedule-day-cell {
+  font-weight: 600;
+  color: #5a5a5a;
+}
+
+.schedule-time-cell {
+  font-weight: 700;
+  color: #8B7355;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.schedule-topic-cell {
+  font-weight: 600;
+  color: #2c3e50;
+  max-width: 300px;
+}
+
+.schedule-type-cell {
+  text-align: center;
+}
+
+.schedule-type-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.schedule-type-лекція {
+  background: rgba(139, 115, 85, 0.15);
+  color: #8B7355;
+}
+
+.schedule-type-практика {
+  background: rgba(44, 62, 80, 0.1);
+  color: #2c3e50;
+}
+
+.schedule-type-консультація {
+  background: rgba(139, 115, 85, 0.2);
+  color: #8B7355;
+}
+
+.schedule-duration-cell {
+  text-align: center;
+  color: #5a5a5a;
+  white-space: nowrap;
+}
+
+.schedule-instructor-cell {
+  color: #5a5a5a;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+
+@media (max-width: 768px) {
+  .schedule-table-wrapper {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .schedule-table {
+    min-width: 600px;
+    font-size: 0.85rem;
+  }
+
+  .schedule-table th,
+  .schedule-table td {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .schedule-table th {
+    font-size: 0.8rem;
+  }
+
+  .schedule-topic-cell {
+    max-width: 200px;
+  }
+
+  .course-selector {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .course-select {
+    max-width: 100%;
+  }
+}
+

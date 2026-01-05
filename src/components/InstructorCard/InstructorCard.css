@@ -1,0 +1,193 @@
+.instructor-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+
+/* Круглий контейнер для фото */
+.instructor-photo-container {
+  width: 160px;
+  height: 160px;
+  margin: 24px auto 16px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid white;
+  box-shadow: 0 8px 20px rgba(139, 115, 85, 0.2);
+}
+
+/* Фото у формі круга */
+.instructor-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+
+
+
+.instructor-info {
+  padding: 0 24px 24px;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.instructor-name {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #2c3e50;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.instructor-language {
+  margin: 0 0 12px 0;
+  color: #8B7355;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.instructor-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #ffd700;
+  font-size: 18px;
+  filter: drop-shadow(0 2px 4px rgba(139, 115, 85, 0.2));
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star.half {
+  color: #ffd700;
+  opacity: 0.7;
+}
+
+.rating-value {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 15px;
+}
+
+.instructor-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: #f8f7f5;
+  border-radius: 12px;
+  border: 1px solid #e8e5e0;
+}
+
+.experience-item,
+.students-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.experience-label,
+.students-label {
+  font-size: 11px;
+  color: #5a5a5a;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.experience-value,
+.students-value {
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.instructor-description {
+  color: #5a5a5a;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Фолбек якщо фото відсутнє - також круглий */
+.instructor-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8B7355 0%, #9B8366 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.instructor-fallback::after {
+  content: attr(data-initial);
+  position: absolute;
+  font-size: 64px;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .instructor-photo-container {
+    width: 140px;
+    height: 140px;
+    margin: 20px auto 12px;
+  }
+  
+  .instructor-info {
+    padding: 0 20px 20px;
+  }
+  
+  .instructor-name {
+    font-size: 18px;
+  }
+  
+  .instructor-details {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .instructor-photo-container {
+    width: 120px;
+    height: 120px;
+    margin: 16px auto 10px;
+  }
+  
+}

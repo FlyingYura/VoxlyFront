@@ -1,0 +1,243 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.course-preview-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #5a5a5a;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f0f0f0;
+  color: #2c3e50;
+}
+
+.course-preview-header {
+  margin-bottom: 1.5rem;
+}
+
+.course-preview-header h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.75rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.course-preview-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.course-preview-language {
+  background: linear-gradient(135deg, #8B7355 0%, #9B8366 100%);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(139, 115, 85, 0.2);
+}
+
+.course-preview-level {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.level-початковий {
+  background: rgba(139, 115, 85, 0.1);
+  color: #8B7355;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+}
+
+.level-середній {
+  background: rgba(139, 115, 85, 0.15);
+  color: #8B7355;
+  border: 1px solid rgba(139, 115, 85, 0.4);
+}
+
+.level-продвинутий {
+  background: rgba(139, 115, 85, 0.2);
+  color: #8B7355;
+  border: 1px solid rgba(139, 115, 85, 0.5);
+}
+
+.course-preview-description {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.course-preview-description p {
+  color: #5a5a5a;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.course-preview-info {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.info-label {
+  color: #5a5a5a;
+  font-weight: 500;
+}
+
+.info-value {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.course-preview-topics {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.course-preview-topics h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.course-preview-topics ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-preview-topics li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+  color: #5a5a5a;
+  line-height: 1.6;
+}
+
+.course-preview-topics li:last-child {
+  border-bottom: none;
+}
+
+.course-preview-topics li strong {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.course-preview-methodology {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.course-preview-methodology h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.course-preview-methodology p {
+  color: #5a5a5a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.course-preview-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.course-preview-price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-label {
+  color: #5a5a5a;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.price-amount {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #8B7355;
+}
+
+.course-preview-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .course-preview-modal {
+    padding: 1.5rem;
+    max-height: 95vh;
+  }
+
+  .course-preview-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .course-preview-actions {
+    width: 100%;
+  }
+
+  .course-preview-actions button {
+    flex: 1;
+  }
+}
+

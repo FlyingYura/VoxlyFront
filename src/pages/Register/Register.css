@@ -1,0 +1,151 @@
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #faf8f5 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.register-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(139, 115, 85, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.register-container {
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  z-index: 1;
+}
+
+.register-card {
+  padding: 3rem;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e8e5e0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.register-card h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+.register-subtitle {
+  margin: 0 0 2rem 0;
+  color: #5a5a5a;
+  font-size: 1rem;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  color: #d32f2f;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  box-shadow: 0 2px 6px rgba(255, 0, 0, 0.1);
+}
+
+.register-form {
+  text-align: left;
+}
+
+.register-button {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.login-link {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e8e5e0;
+}
+
+.login-link p {
+  margin: 0;
+  color: #5a5a5a;
+}
+
+.login-link a {
+  color: #8B7355;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.login-link a:hover {
+  color: #9B8366;
+  transform: translateX(2px);
+}
+
+.login-divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e8e5e0;
+}
+
+.login-divider span {
+  padding: 0 1rem;
+  color: #5a5a5a;
+  font-size: 14px;
+}
+
+.google-login-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+  padding: 12px 24px;
+  border: 1px solid #e8e5e0;
+  background: #ffffff;
+  color: #2c3e50;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.google-login-button:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #8B7355;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.google-login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .register-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .register-card h1 {
+    font-size: 2rem;
+  }
+}

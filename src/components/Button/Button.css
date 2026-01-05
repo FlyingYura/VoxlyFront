@@ -1,0 +1,103 @@
+.btn {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.btn:active {
+  transform: scale(0.96);
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8B7355 0%, #9B8366 100%);
+  color: #FFFFFF;
+  border: 1px solid #8B7355;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #9B8366 0%, #AB9376 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(139, 115, 85, 0.35);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6B8E9F 0%, #7B9EAF 100%);
+  color: #FFFFFF;
+  border: 1px solid #6B8E9F;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7B9EAF 0%, #8BAEBF 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(107, 142, 159, 0.35);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #8B7355;
+  border: 2px solid rgba(139, 115, 85, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: linear-gradient(135deg, #8B7355 0%, #9B8366 100%);
+  color: #FFFFFF;
+  box-shadow: 0 6px 16px rgba(139, 115, 85, 0.25);
+  transform: translateY(-3px) scale(1.02);
+  border-color: #8B7355;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.btn:active:not(:disabled) {
+  animation: buttonPress 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
