@@ -12,6 +12,8 @@ interface InputProps {
   textarea?: boolean;
   rows?: number;
   className?: string;
+  disabled?: boolean;
+  maxLength?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -24,7 +26,9 @@ const Input: React.FC<InputProps> = ({
   required = false,
   textarea = false,
   rows = 4,
-  className = ''
+  className = '',
+  disabled = false,
+  maxLength
 }) => {
   const inputId = name || `input-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -45,6 +49,8 @@ const Input: React.FC<InputProps> = ({
           placeholder={placeholder}
           required={required}
           rows={rows}
+          disabled={disabled}
+          maxLength={maxLength}
           className="input-field textarea-field"
         />
       ) : (
@@ -56,6 +62,8 @@ const Input: React.FC<InputProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
+          disabled={disabled}
+          maxLength={maxLength}
           className="input-field"
         />
       )}

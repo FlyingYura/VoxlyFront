@@ -1,4 +1,4 @@
-import type { Course, Instructor, ScheduleItem, LearningMaterial, Test, CourseTopic } from '../types';
+import type { Course, Instructor } from '../types';
 
 export const courses: Course[] = [
   {
@@ -2008,6 +2008,7 @@ export const instructors: Instructor[] = [
   {
     id: '1',
     name: 'Олена Петренко',
+    language: 'Англійська',
     specialization: 'Англійська мова',
     experience: '8+ років',
     rating: 4.9,
@@ -2018,6 +2019,7 @@ export const instructors: Instructor[] = [
   {
     id: '2',
     name: 'Марія Коваленко',
+    language: 'Німецька',
     specialization: 'Німецька мова',
     experience: '10+ років',
     rating: 4.8,
@@ -2028,6 +2030,7 @@ export const instructors: Instructor[] = [
   {
     id: '3',
     name: 'Анна Сидоренко',
+    language: 'Французька',
     specialization: 'Французька мова',
     experience: '6+ років',
     rating: 4.7,
@@ -2038,6 +2041,7 @@ export const instructors: Instructor[] = [
   {
     id: '4',
     name: 'Олександр Мельник',
+    language: 'Іспанська',
     specialization: 'Іспанська мова',
     experience: '12+ років',
     rating: 5.0,
@@ -2048,6 +2052,7 @@ export const instructors: Instructor[] = [
   {
     id: '5',
     name: 'Тетяна Лисенко',
+    language: 'Польська',
     specialization: 'Польська мова',
     experience: '7+ років',
     rating: 4.9,
@@ -2058,6 +2063,7 @@ export const instructors: Instructor[] = [
   {
     id: '6',
     name: 'Вікторія Гриценко',
+    language: 'Італійська',
     specialization: 'Італійська мова',
     experience: '5+ років',
     rating: 4.8,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import Button from '../Button/Button';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';

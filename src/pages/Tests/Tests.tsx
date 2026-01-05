@@ -371,9 +371,12 @@ const Tests: React.FC = () => {
                                 ) : (
                                   <>
                                     <span>✗ Неправильно</span>
-                                    <span className="correct-answer">Правильна відповідь: {Array.isArray(questionResults[question.id].correctAnswer) 
-                                      ? questionResults[question.id].correctAnswer.join(', ')
-                                      : questionResults[question.id].correctAnswer}</span>
+                                    <span className="correct-answer">Правильна відповідь: {(() => {
+                                      const correctAnswer = questionResults[question.id].correctAnswer;
+                                      return Array.isArray(correctAnswer) 
+                                        ? correctAnswer.join(', ')
+                                        : correctAnswer;
+                                    })()}</span>
                                   </>
                                 )}
                               </div>

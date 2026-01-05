@@ -7,7 +7,6 @@ import Button from '../../components/Button/Button';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const [selectedLanguage] = useState<string>('');
   const [isVisible, setIsVisible] = useState({
     why1: false,
     why2: false,
