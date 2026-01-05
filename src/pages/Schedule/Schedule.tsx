@@ -8,7 +8,7 @@ import './Schedule.css';
 
 const Schedule: React.FC = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(getCurrentUser());
+  const [user] = useState(getCurrentUser());
   const [selectedCourse, setSelectedCourse] = useState<string>('');
 
   useEffect(() => {

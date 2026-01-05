@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Course } from '../../types';
+import type { Course } from '../../types';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
 import CoursePreviewModal from '../CoursePreviewModal/CoursePreviewModal';

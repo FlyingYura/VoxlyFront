@@ -90,8 +90,8 @@ const Courses: React.FC = () => {
           onEnroll={handleEnroll}
           onPay={handlePay}
           showPayButton={(courseId) => {
-            const isEnrolled = user?.enrolledCourses?.includes(courseId);
-            const isPaid = user?.paidCourses?.includes(courseId);
+            const isEnrolled = user?.enrolledCourses?.includes(courseId) ?? false;
+            const isPaid = user?.paidCourses?.includes(courseId) ?? false;
             return isEnrolled && !isPaid;
           }}
         />

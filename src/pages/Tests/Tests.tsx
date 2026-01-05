@@ -4,7 +4,7 @@ import { courses } from '../../utils/data';
 import { getCurrentUser } from '../../utils/auth';
 import { calculateCourseProgress } from '../../utils/progress';
 import api from '../../config/api';
-import type { Test, TestResult } from '../../types';
+import type { Test } from '../../types';
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
 import './Tests.css';
@@ -138,7 +138,7 @@ const Tests: React.FC = () => {
                 console.error('Error fetching existing progress:', error);
               }
 
-              const { progressPercentage, completedTopics, totalTopics } = calculateCourseProgress(
+              const { progressPercentage } = calculateCourseProgress(
                 course,
                 updatedUser.testResults || [],
                 existingCompletedSubtopics
@@ -348,7 +348,7 @@ const Tests: React.FC = () => {
                           <input
                             type="checkbox"
                             checked={(answers[question.id] as string[])?.includes(option) || false}
-                            onChange={(e) => handleAnswerChange(question.id, option, 'multiple')}
+                            onChange={() => handleAnswerChange(question.id, option, 'multiple')}
                             disabled={isSubmitted}
                           />
                           <span>{option}</span>

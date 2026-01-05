@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { courses } from '../../utils/data';
 import { getCurrentUser, refreshUserData, updateUser } from '../../utils/auth';
-import api from '../../config/api';
 import Card from '../../components/Card/Card';
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
@@ -36,18 +35,18 @@ const Payment: React.FC = () => {
 
   if (!course || !user) return null;
 
-  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
     if (value.length > 16) value = value.slice(0, 16); // Максимум 16 цифр
     setPaymentData(prev => ({ ...prev, cardNumber: value }));
   };
 
-  const handleCardHolderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCardHolderChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let value = e.target.value.replace(/[^A-Za-zА-Яа-яіІїЇєЄ\s]/g, ''); // Тільки літери та пробіли
     setPaymentData(prev => ({ ...prev, cardHolder: value.toUpperCase() }));
   };
 
-  const handleExpiryDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleExpiryDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
     if (value.length > 4) value = value.slice(0, 4);
     // Додаємо "/" після 2 цифр
@@ -57,13 +56,13 @@ const Payment: React.FC = () => {
     setPaymentData(prev => ({ ...prev, expiryDate: value }));
   };
 
-  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
     if (value.length > 3) value = value.slice(0, 3); // Максимум 3 цифри
     setPaymentData(prev => ({ ...prev, cvv: value }));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setPaymentData(prev => ({
       ...prev,

@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { courses } from '../../utils/data';
 import { getCurrentUser } from '../../utils/auth';
 import { calculateTopicProgress, calculateCourseProgress } from '../../utils/progress';
-import { CourseTopic, CourseSubtopic } from '../../types';
+import type { CourseTopic, CourseSubtopic } from '../../types';
 import api from '../../config/api';
 import Card from '../../components/Card/Card';
 import './CourseView.css';
@@ -15,7 +15,6 @@ const CourseView: React.FC = () => {
   const [user, setUser] = useState(getCurrentUser());
   const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
   const [completedSubtopics, setCompletedSubtopics] = useState<string[]>([]);
-  const [isLoadingProgress, setIsLoadingProgress] = useState(false);
 
   useEffect(() => {
     const currentUser = getCurrentUser();
@@ -32,7 +31,6 @@ const CourseView: React.FC = () => {
       if (!courseId) return;
       
       try {
-        setIsLoadingProgress(true);
         // Оновлюємо дані користувача з localStorage (можливо оновлені після тесту)
         const currentUser = getCurrentUser();
         if (currentUser) {
@@ -47,8 +45,6 @@ const CourseView: React.FC = () => {
         }
       } catch (error) {
         console.error('Error loading progress:', error);
-      } finally {
-        setIsLoadingProgress(false);
       }
     };
 

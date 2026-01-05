@@ -7,13 +7,15 @@ interface CardProps {
   onClick?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ children, className = '', onClick }) => {
+const Card = React.forwardRef<HTMLDivElement, CardProps>(({ children, className = '', onClick }, ref) => {
   return (
-    <div className={`card ${className}`} onClick={onClick}>
+    <div ref={ref} className={`card ${className}`} onClick={onClick}>
       {children}
     </div>
   );
-};
+});
+
+Card.displayName = 'Card';
 
 export default Card;
 

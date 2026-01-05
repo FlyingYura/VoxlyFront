@@ -9,7 +9,6 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [user, setUser] = useState(getCurrentUser());
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(getCurrentUser());

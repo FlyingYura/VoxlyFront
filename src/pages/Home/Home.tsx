@@ -7,7 +7,7 @@ import Button from '../../components/Button/Button';
 import './Home.css';
 
 const Home: React.FC = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>('');
+  const [selectedLanguage] = useState<string>('');
   const [isVisible, setIsVisible] = useState({
     why1: false,
     why2: false,
@@ -63,9 +63,7 @@ const Home: React.FC = () => {
     }
   ];
 
-  const filteredCourses = selectedLanguage
-    ? courses.filter(course => course.language === selectedLanguage)
-    : featuredCourses;
+  // filteredCourses використовується через featuredCourses
 
   // Прокрутка до верху при завантаженні сторінки
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { Course, Instructor, ScheduleItem, LearningMaterial, Test, CourseTopic } from '../types';
+import type { Course, Instructor, ScheduleItem, LearningMaterial, Test, CourseTopic } from '../types';
 
 export const courses: Course[] = [
   {
@@ -2009,48 +2009,60 @@ export const instructors: Instructor[] = [
     id: '1',
     name: 'Олена Петренко',
     specialization: 'Англійська мова',
-    experience: 8,
+    experience: '8+ років',
     rating: 4.9,
+    students: 120,
+    description: 'Сертифікований викладач з 8-річним досвідом. Спеціалізується на викладанні англійської для дорослих.',
     bio: 'Сертифікований викладач з 8-річним досвідом. Спеціалізується на викладанні англійської для дорослих.'
   },
   {
     id: '2',
     name: 'Марія Коваленко',
     specialization: 'Німецька мова',
-    experience: 10,
+    experience: '10+ років',
     rating: 4.8,
+    students: 95,
+    description: 'Досвідчений викладач німецької мови, має ступінь магістра з германістики.',
     bio: 'Досвідчений викладач німецької мови, має ступінь магістра з германістики.'
   },
   {
     id: '3',
     name: 'Анна Сидоренко',
     specialization: 'Французька мова',
-    experience: 6,
+    experience: '6+ років',
     rating: 4.7,
+    students: 85,
+    description: 'Носій французької культури, викладає французьку мову з акцентом на практичне застосування.',
     bio: 'Носій французької культури, викладає французьку мову з акцентом на практичне застосування.'
   },
   {
     id: '4',
     name: 'Олександр Мельник',
     specialization: 'Іспанська мова',
-    experience: 12,
+    experience: '12+ років',
     rating: 5.0,
+    students: 150,
+    description: 'Професор іспанської мови з багаторічним досвідом викладання в університеті.',
     bio: 'Професор іспанської мови з багаторічним досвідом викладання в університеті.'
   },
   {
     id: '5',
     name: 'Тетяна Лисенко',
     specialization: 'Польська мова',
-    experience: 7,
+    experience: '7+ років',
     rating: 4.9,
+    students: 110,
+    description: 'Спеціалізується на польській мові для бізнесу та працевлаштування.',
     bio: 'Спеціалізується на польській мові для бізнесу та працевлаштування.'
   },
   {
     id: '6',
     name: 'Вікторія Гриценко',
     specialization: 'Італійська мова',
-    experience: 5,
+    experience: '5+ років',
     rating: 4.8,
+    students: 75,
+    description: 'Молодий та енергійний викладач італійської мови з сучасними методиками навчання.',
     bio: 'Молодий та енергійний викладач італійської мови з сучасними методиками навчання.'
   }
 ];

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instructor } from '../../types';
+import type { Instructor } from '../../types';
 import Card from '../Card/Card';
 import './InstructorCard.css';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Course } from '../../types';
+import type { Course } from '../../types';
 import Button from '../Button/Button';
 import './CoursePreviewModal.css';
 

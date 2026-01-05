@@ -7,7 +7,7 @@ import './Materials.css';
 
 const Materials: React.FC = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(getCurrentUser());
+  const [user] = useState(getCurrentUser());
   const [selectedCourse, setSelectedCourse] = useState<string>('');
 
   useEffect(() => {

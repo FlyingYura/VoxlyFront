@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ContactForm } from '../../types';
+import type { ContactForm } from '../../types';
 import Input from '../../components/Input/Input';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
