@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       rating: 4.9,
       students: 120,
       description: 'Сертифікований викладач з міжнародним досвідом',
-      image: '/src/assets/roksa.jpg'
+      image: '/assets/roksa.jpg'
     },
     {
       id: '2',
@@ -48,7 +48,7 @@ const Home: React.FC = () => {
       rating: 4.8,
       students: 95,
       description: 'Носій мови, експерт з підготовки до Goethe-Zertifikat',
-      image: '/src/assets/kolya.jpg'
+      image: '/assets/kolya.jpg'
     },
     {
       id: '3',
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
       rating: 4.7,
       students: 85,
       description: 'Носій французької мови, спеціаліст з розмовної практики',
-      image: '/src/assets/mbap.png'
+      image: '/assets/mbap.png'
     }
   ];
 
@@ -132,7 +132,7 @@ const Home: React.FC = () => {
           </div>
           <div className="hero-image">
             <img 
-              src="/src/assets/Teaching-amico.svg" 
+              src="/assets/Teaching-amico.svg" 
               alt="Вивчення мов онлайн" 
             />
           </div>
@@ -160,7 +160,7 @@ const Home: React.FC = () => {
               <div className="why-image-wrapper">
                 <div className="why-number">01</div>
                 <img 
-                  src="/src/assets/teachers.svg" 
+                  src="/assets/teachers.svg" 
                   alt="Досвідчені викладачі мовної школи" 
                 />
               </div>
@@ -187,7 +187,7 @@ const Home: React.FC = () => {
               <div className="why-image-wrapper">
                 <div className="why-number">02</div>
                 <img 
-                  src="/src/assets/gaming.svg" 
+                  src="/assets/gaming.svg" 
                   alt="Сучасні методики вивчення мов" 
                 />
               </div>
@@ -214,7 +214,7 @@ const Home: React.FC = () => {
               <div className="why-image-wrapper">
                 <div className="why-number">03</div>
                 <img 
-                  src="/src/assets/method.svg" 
+                  src="/assets/method.svg" 
                   alt="Різноманітність мов для вивчення" 
                 />
               </div>
@@ -241,7 +241,7 @@ const Home: React.FC = () => {
               <div className="why-image-wrapper">
                 <div className="why-number">04</div>
                 <img 
-                  src="/src/assets/online.svg" 
+                  src="/assets/online.svg" 
                   alt="Онлайн та офлайн формати навчання" 
                 />
               </div>

@@ -12,7 +12,7 @@ const About: React.FC = () => {
       rating: 4.9,
       students: 120,
       description: 'Сертифікований викладач з міжнародним досвідом',
-      image: '/src/assets/roksa.jpg'
+      image: '/assets/roksa.jpg'
     },
     {
       id: '2',
@@ -22,7 +22,7 @@ const About: React.FC = () => {
       rating: 4.8,
       students: 95,
       description: 'Носій мови, експерт з підготовки до Goethe-Zertifikat',
-      image: '/src/assets/kolya.jpg'
+      image: '/assets/kolya.jpg'
     },
     {
       id: '3',
@@ -32,7 +32,7 @@ const About: React.FC = () => {
       rating: 4.7,
       students: 85,
       description: 'Носій французької мови, спеціаліст з розмовної практики',
-      image: '/src/assets/mbap.png'
+      image: '/assets/mbap.png'
     },
     {
       id: '4',
@@ -42,7 +42,7 @@ const About: React.FC = () => {
       rating: 4.8,
       students: 110,
       description: 'Носій іспанської мови, досвід роботи в Іспанії',
-      image: '/src/assets/ira.png'
+      image: '/assets/ira.png'
     },
     {
       id: '5',
@@ -52,7 +52,7 @@ const About: React.FC = () => {
       rating: 4.6,
       students: 75,
       description: 'Спеціаліст з польської мови та культури',
-      image: '/src/assets/volod.png'
+      image: '/assets/volod.png'
     },
     {
       id: '6',
@@ -62,7 +62,7 @@ const About: React.FC = () => {
       rating: 5,
       students: 80,
       description: 'Носій італійської мови, досвід викладання в Італії',
-      image: '/src/assets/den.jpg'
+      image: '/assets/den.jpg'
     }
   ];
 

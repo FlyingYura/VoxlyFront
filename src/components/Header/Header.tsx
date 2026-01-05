@@ -21,7 +21,7 @@ const Header: React.FC = () => {
       <div className="header-container">
         <Link to="/" className="logo">
           <img 
-            src="/src/assets/voxly.png" 
+            src="/assets/voxly.png" 
             alt="Voxly - Мовна Школа" 
             className="logo-image"
           />
