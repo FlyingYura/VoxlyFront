@@ -513,3 +513,87 @@
     max-height: 300px;
   }
 }
+
+@media (max-width: 390px) {
+  .course-view-page {
+    padding: 0;
+  }
+
+  .course-view-container {
+    grid-template-columns: 1fr;
+    min-height: calc(100vh - 70px);
+  }
+
+  .course-sidebar {
+    padding: 1rem;
+    max-height: 250px;
+  }
+
+  .sidebar-header h2 {
+    font-size: 1.125rem;
+  }
+
+  .topic-header {
+    padding: 0.75rem;
+  }
+
+  .topic-title {
+    font-size: 0.875rem;
+  }
+
+  .topic-number {
+    font-size: 0.75rem;
+  }
+
+  .subtopic-item {
+    padding: 0.5rem;
+  }
+
+  .subtopic-title {
+    font-size: 0.8125rem;
+  }
+
+  .course-content {
+    padding: 1rem;
+  }
+
+  .content-view h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .topic-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .content-text p {
+    font-size: 0.9375rem;
+  }
+
+  .materials-section h3 {
+    font-size: 1.25rem;
+  }
+
+  .material-item {
+    padding: 1rem;
+  }
+
+  .material-item h4 {
+    font-size: 1rem;
+  }
+
+  .material-item p {
+    font-size: 0.875rem;
+  }
+
+  .start-test-btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+  }
+
+  .next-topic-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+}

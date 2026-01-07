@@ -105,9 +105,7 @@ const Tests: React.FC = () => {
     setIsSubmitted(true);
     setTimeLeft(null);
 
-    // Збереження результату через API
     try {
-      // Відправляємо результат тесту на сервер
       const response = await api.post('/api/users/me/test-results', {
         testId: selectedTest.id,
         score: totalScore,
@@ -116,18 +114,14 @@ const Tests: React.FC = () => {
       });
 
       if (response.data.success) {
-        // Оновлюємо дані користувача
         const updatedUser = response.data.user;
         localStorage.setItem('currentUser', JSON.stringify(updatedUser));
         setUser(updatedUser);
 
-        // Оновлюємо прогрес курсу, якщо є courseId
         if (courseId) {
           try {
-            // Розраховуємо прогрес на основі результатів тестів
             const course = courses.find(c => c.id === courseId);
             if (course && course.roadmap) {
-              // Отримуємо поточний прогрес, щоб зберегти completedSubtopics
               let existingCompletedSubtopics: string[] = [];
               try {
                 const progressResponse = await api.get(`/api/users/me/progress/${courseId}`);

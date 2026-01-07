@@ -29,14 +29,12 @@ const Login: React.FC = () => {
     setError('');
     setLoading(true);
     
-    // Валідація
     if (!formData.email || !formData.password) {
       setError('Будь ласка, заповніть всі поля');
       setLoading(false);
       return;
     }
 
-    // Перевірка email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Будь ласка, введіть коректний email');

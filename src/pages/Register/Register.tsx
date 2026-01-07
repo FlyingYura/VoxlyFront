@@ -31,14 +31,12 @@ const Register: React.FC = () => {
     setError('');
     setLoading(true);
     
-    // Валідація
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
       setError('Будь ласка, заповніть всі поля');
       setLoading(false);
       return;
     }
 
-    // Перевірка email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       setError('Будь ласка, введіть коректний email');
@@ -46,14 +44,12 @@ const Register: React.FC = () => {
       return;
     }
 
-    // Перевірка пароля
     if (formData.password.length < 6) {
       setError('Пароль повинен містити мінімум 6 символів');
       setLoading(false);
       return;
     }
 
-    // Перевірка співпадіння паролів
     if (formData.password !== formData.confirmPassword) {
       setError('Паролі не співпадають');
       setLoading(false);

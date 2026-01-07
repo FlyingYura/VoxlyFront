@@ -25,24 +25,20 @@ const Contact: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Валідація
     if (!formData.name || !formData.email || !formData.message) {
       alert('Будь ласка, заповніть всі поля');
       return;
     }
 
-    // Перевірка email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       alert('Будь ласка, введіть коректний email');
       return;
     }
 
-    // Симуляція відправки
     console.log('Форма відправлена:', formData);
     setIsSubmitted(true);
     
-    // Очищення форми через 3 секунди
     setTimeout(() => {
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitted(false);

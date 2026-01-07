@@ -25,13 +25,11 @@ const CourseView: React.FC = () => {
     setUser(currentUser);
   }, [navigate]);
 
-  // Завантажуємо прогрес користувача та оновлюємо дані користувача
   useEffect(() => {
     const loadUserProgress = async () => {
       if (!courseId) return;
       
       try {
-        // Оновлюємо дані користувача з localStorage (можливо оновлені після тесту)
         const currentUser = getCurrentUser();
         if (currentUser) {
           setUser(currentUser);
@@ -50,7 +48,6 @@ const CourseView: React.FC = () => {
 
     loadUserProgress();
     
-    // Оновлюємо дані при фокусі на вікно (наприклад, після повернення з тесту)
     const handleFocus = () => {
       const currentUser = getCurrentUser();
       if (currentUser) {
@@ -61,7 +58,7 @@ const CourseView: React.FC = () => {
     
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
-  }, [courseId, topicId, subtopicId, location.pathname]); // Додаємо location.pathname для оновлення при зміні URL
+  }, [courseId, topicId, subtopicId, location.pathname]);
 
   if (!courseId) {
     navigate('/my-courses');
@@ -89,7 +86,6 @@ const CourseView: React.FC = () => {
     if (topicId) {
       setExpandedTopics(prev => new Set(prev).add(topicId));
     } else if (course?.roadmap && course.roadmap.length > 0) {
-      // Автоматично розгортаємо першу тему якщо немає вибраної
       const firstTopic = course.roadmap[0];
       if (firstTopic.subtopics && firstTopic.subtopics.length > 0) {
         setExpandedTopics(prev => new Set(prev).add(firstTopic.id));
@@ -133,21 +129,17 @@ const CourseView: React.FC = () => {
     return calculateTopicProgress(topic, user?.testResults || [], completedSubtopics);
   };
 
-  // Функція для збереження прогресу при проходженні підтеми
   const saveProgress = async (subtopicId: string) => {
     if (!courseId || !user || !subtopicId) return;
     
-    // Перевіряємо, чи підтема вже завершена
     if (completedSubtopics.includes(subtopicId)) {
       return;
     }
 
     try {
-      // Оновлюємо локальний стан
       const newCompletedSubtopics = [...completedSubtopics, subtopicId];
       setCompletedSubtopics(newCompletedSubtopics);
 
-      // Розраховуємо новий прогрес
       const course = courses.find(c => c.id === courseId);
       if (course) {
         const { progressPercentage } = calculateCourseProgress(
@@ -156,7 +148,6 @@ const CourseView: React.FC = () => {
           newCompletedSubtopics
         );
 
-        // Оновлюємо прогрес на бекенді
         await api.post('/api/users/me/progress', {
           courseId,
           progress: progressPercentage,
@@ -177,7 +168,6 @@ const CourseView: React.FC = () => {
       }
     } catch (error) {
       console.error('Error saving progress:', error);
-      // Відкатуємо локальний стан при помилці
       setCompletedSubtopics(completedSubtopics);
     }
   };
@@ -232,10 +222,8 @@ const CourseView: React.FC = () => {
                   {isExpanded && hasSubtopics && (
                     <div className="subtopics-list">
                       {topic.subtopics?.map((subtopic, index) => {
-                        // Перевіряємо, чи підтема завершена
                         let isCompleted = completedSubtopics.includes(subtopic.id);
                         
-                        // Якщо це тест, перевіряємо результат тесту за testId підтеми
                         if (subtopic.type === 'test' && subtopic.testId) {
                           const testResult = user?.testResults?.find((tr: any) => tr.testId === subtopic.testId);
                           if (testResult) {
@@ -244,13 +232,12 @@ const CourseView: React.FC = () => {
                           }
                         }
                         
-                        // Також перевіряємо, чи тема має тест і він пройдено - тоді всі підтеми завершені
                         if (topic.testId) {
                           const topicTestResult = user?.testResults?.find((tr: any) => tr.testId === topic.testId);
                           if (topicTestResult) {
                             const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
                             if (percentage >= 80) {
-                              isCompleted = true; // Якщо тест теми пройдено, всі підтеми завершені
+                              isCompleted = true;
                             }
                           }
                         }
@@ -333,27 +320,23 @@ const CourseView: React.FC = () => {
                   let nextTopic: CourseTopic | null = null;
                   let nextSubtopic: CourseSubtopic | null = null;
                   
-                  // Знаходимо поточну тему
                   const currentTopicIndex = course.roadmap.findIndex(t => t.id === selectedTopic?.id);
                   
                   if (currentTopicIndex !== -1) {
                     const currentTopic = course.roadmap[currentTopicIndex];
                     const currentSubtopicIndex = currentTopic.subtopics?.findIndex(st => st.id === subtopicId) ?? -1;
                     
-                    // Перевіряємо чи є наступна підтема в поточній темі
                     if (currentSubtopicIndex !== -1 && currentTopic.subtopics) {
                       if (currentSubtopicIndex < currentTopic.subtopics.length - 1) {
                         nextTopic = currentTopic;
                         nextSubtopic = currentTopic.subtopics[currentSubtopicIndex + 1];
                       } else if (currentTopicIndex < course.roadmap.length - 1) {
-                        // Переходимо до наступної теми
                         nextTopic = course.roadmap[currentTopicIndex + 1];
                         if (nextTopic.subtopics && nextTopic.subtopics.length > 0) {
                           nextSubtopic = nextTopic.subtopics[0];
                         }
                       }
                     } else if (currentTopicIndex < course.roadmap.length - 1) {
-                      // Якщо немає підтем, переходимо до наступної теми
                       nextTopic = course.roadmap[currentTopicIndex + 1];
                       if (nextTopic.subtopics && nextTopic.subtopics.length > 0) {
                         nextSubtopic = nextTopic.subtopics[0];
@@ -366,12 +349,10 @@ const CourseView: React.FC = () => {
                       <button 
                         className="next-topic-btn"
                         onClick={async () => {
-                          // Зберігаємо прогрес поточної підтеми (якщо це не тест)
                           if (selectedSubtopic && selectedSubtopic.type !== 'test' && subtopicId) {
                             await saveProgress(subtopicId);
                           }
                           
-                          // Переходимо до наступної підтеми/тесту
                           if (nextSubtopic?.type === 'test' && nextSubtopic.testId) {
                             navigate(`/course/${courseId}/test/${nextSubtopic.testId}`);
                           } else {

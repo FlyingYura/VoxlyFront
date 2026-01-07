@@ -44,7 +44,7 @@ export interface ScheduleItem {
   duration: number;
   type: 'Лекція' | 'Практика' | 'Консультація';
   topic?: string;
-  date?: string; // Дата заняття у форматі YYYY-MM-DD
+  date?: string;
 }
 
 export interface LearningMaterial {

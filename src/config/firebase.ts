@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
-// Firebase конфігурація
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCD8HCwTLrdtlemVcZOk40mP0ZM5f3n-6o",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "voxly-f2531.firebaseapp.com",
@@ -12,13 +11,10 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-2CX780RFKV",
 };
 
-// Ініціалізація Firebase
 const app = initializeApp(firebaseConfig);
 
-// Ініціалізація Auth
 export const auth = getAuth(app);
 
-// Google провайдер
 export const googleProvider = new GoogleAuthProvider();
 
 export default app;

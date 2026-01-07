@@ -35,7 +35,6 @@ const InstructorCard: React.FC<InstructorCardProps> = ({ instructor }) => {
 
   return (
     <Card className="instructor-card">
-      {/* Круглий контейнер для фото */}
       <div className="instructor-photo-container">
         {instructor.image ? (
           <img 
@@ -43,7 +42,6 @@ const InstructorCard: React.FC<InstructorCardProps> = ({ instructor }) => {
             alt={instructor.name}
             className="instructor-photo"
             onError={(e) => {
-              // Якщо фото не завантажилося, показуємо фолбек
               e.currentTarget.style.display = 'none';
               e.currentTarget.parentElement?.insertAdjacentHTML(
                 'beforeend', 

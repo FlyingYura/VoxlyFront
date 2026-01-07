@@ -29,7 +29,6 @@ const Courses: React.FC = () => {
       return matchesSearch && matchesLanguage && matchesLevel;
     });
 
-    // Сортування
     filtered.sort((a, b) => {
       if (sortBy === 'price') {
         return a.price - b.price;
@@ -51,7 +50,6 @@ const Courses: React.FC = () => {
 
     const course = courses.find(c => c.id === courseId);
     if (course) {
-      // Запис на курс
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       const userIndex = users.findIndex((u: any) => u.id === user.id);
       
@@ -64,7 +62,6 @@ const Courses: React.FC = () => {
         }
       }
       
-      // Перехід на оплату
       navigate(`/payment/${courseId}`);
     }
   };
@@ -80,7 +77,6 @@ const Courses: React.FC = () => {
         <p>Оберіть курс, який вам підходить</p>
       </div>
 
-      {/* Секція з картою */}
       <div className="map-section">
         <h2 className="map-title">
           Оберіть на карті мову якої країни ви хочете вивчити
@@ -97,7 +93,6 @@ const Courses: React.FC = () => {
         />
       </div>
 
-      {/* Альтернативна секція */}
       <div className="alternative-section">
         <p className="alternative-title">
           Або якщо у вас проблеми з географією, то виберіть курс тут:

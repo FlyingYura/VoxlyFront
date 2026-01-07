@@ -25,15 +25,12 @@ export const isAuthenticated = (): boolean => {
 
 export const loginWithGoogle = async (): Promise<User> => {
   try {
-    // Автентифікація через Google
     const result = await signInWithPopup(auth, googleProvider);
     const firebaseUser = result.user;
     const idToken = await firebaseUser.getIdToken();
 
-    // Зберігаємо токен
     localStorage.setItem('firebaseIdToken', idToken);
 
-    // Відправляємо токен на бекенд для створення/оновлення користувача
     const response = await api.post('/api/auth/google', { idToken });
 
     if (response.data.success) {
@@ -51,18 +48,14 @@ export const loginWithGoogle = async (): Promise<User> => {
 
 export const register = async (email: string, password: string, name: string): Promise<User> => {
   try {
-    // Створюємо користувача в Firebase
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
     
-    // Оновлюємо профіль з ім'ям
     await updateProfile(firebaseUser, { displayName: name });
     
-    // Отримуємо токен
     const idToken = await firebaseUser.getIdToken();
     localStorage.setItem('firebaseIdToken', idToken);
 
-    // Відправляємо токен на бекенд для створення користувача
     const response = await api.post('/api/auth/google', { idToken });
     
     if (response.data.success) {
@@ -74,7 +67,6 @@ export const register = async (email: string, password: string, name: string): P
     }
   } catch (error: any) {
     console.error('Registration error:', error);
-    // Перетворюємо Firebase помилки на зрозумілі повідомлення
     if (error.code === 'auth/email-already-in-use') {
       throw new Error('Користувач з таким email вже існує');
     } else if (error.code === 'auth/weak-password') {
@@ -88,15 +80,12 @@ export const register = async (email: string, password: string, name: string): P
 
 export const login = async (email: string, password: string): Promise<User> => {
   try {
-    // Вхід через Firebase Auth
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
     
-    // Отримуємо токен
     const idToken = await firebaseUser.getIdToken();
     localStorage.setItem('firebaseIdToken', idToken);
 
-    // Відправляємо токен на бекенд
     const response = await api.post('/api/auth/login', { idToken });
     
     if (response.data.success) {
@@ -108,7 +97,6 @@ export const login = async (email: string, password: string): Promise<User> => {
     }
   } catch (error: any) {
     console.error('Login error:', error);
-    // Перетворюємо Firebase помилки на зрозумілі повідомлення
     if (error.code === 'auth/user-not-found') {
       throw new Error('Користувача з таким email не знайдено');
     } else if (error.code === 'auth/wrong-password') {
@@ -122,13 +110,11 @@ export const login = async (email: string, password: string): Promise<User> => {
 
 export const logout = async (): Promise<void> => {
   try {
-    // Виходимо з Firebase
     await firebaseSignOut(auth);
   } catch (error) {
     console.error('Firebase logout error:', error);
   }
   
-  // Очищаємо локальне сховище
   localStorage.removeItem('currentUser');
   localStorage.removeItem('firebaseIdToken');
 };

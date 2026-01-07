@@ -24,7 +24,6 @@ const Schedule: React.FC = () => {
     user.enrolledCourses?.includes(course.id) || user.paidCourses?.includes(course.id)
   );
 
-  // Автоматично вибираємо перший курс
   useEffect(() => {
     if (userCourses.length > 0 && !selectedCourse) {
       setSelectedCourse(userCourses[0].id);
@@ -34,7 +33,6 @@ const Schedule: React.FC = () => {
   const selectedCourseData = courses.find(c => c.id === selectedCourse);
   const schedule = selectedCourseData ? getCourseSchedule(selectedCourseData) : [];
 
-  // Сортуємо заняття за датами
   const sortedSchedule = [...schedule].sort((a, b) => {
     if (!a.date || !b.date) return 0;
     const dateA = new Date(a.date.split('.').reverse().join('-'));

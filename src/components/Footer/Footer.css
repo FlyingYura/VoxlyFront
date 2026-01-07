@@ -94,3 +94,36 @@
     padding: 2rem 1rem;
   }
 }
+
+@media (max-width: 390px) {
+  .footer-container {
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-section p,
+  .footer-section ul li,
+  .footer-section a {
+    font-size: 0.875rem;
+  }
+
+  .social-links {
+    gap: 0.5rem;
+  }
+
+  .social-links a {
+    padding: 8px 14px;
+    font-size: 0.8125rem;
+  }
+
+  .footer-bottom {
+    padding: 1rem;
+    font-size: 0.8125rem;
+  }
+}

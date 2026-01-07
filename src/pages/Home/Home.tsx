@@ -28,7 +28,6 @@ const Home: React.FC = () => {
 
   const featuredCourses = courses.slice(0, 3);
   
-  // Інструктори для головної сторінки (3 особи)
   const featuredInstructors = [
     {
       id: '1',
@@ -62,14 +61,10 @@ const Home: React.FC = () => {
     }
   ];
 
-  // filteredCourses використовується через featuredCourses
-
-  // Прокрутка до верху при завантаженні сторінки
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  // Навішуємо обробник скролу для анімацій
   useEffect(() => {
     const checkVisibility = () => {
       const sections = [
@@ -110,7 +105,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="home">
-      {/* Оновлений херо-секшен з пастельно синім фоном */}
       <section className="hero">
         <div className="hero-container">
           <div className="hero-content fade-in">
@@ -123,7 +117,6 @@ const Home: React.FC = () => {
                 <Button variant="outline">Почати навчання</Button>
               </Link>
             </div>
-            {/* Додана маленька кнопка "Дізнайся більше про нас" */}
             <div className="learn-more-container">
               <Link to="/about" className="learn-more-link">
                 Дізнайся більше про нас
@@ -139,9 +132,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Секція "Чому обирають нас" */}
       <div className="why-choose-us">
-        {/* Секція 1: Досвідчені викладачі */}
         <section 
           ref={why1Ref} 
           className={`why-section ${isVisible.why1 ? 'fade-in' : ''}`}
@@ -168,7 +159,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Секція 2: Сучасні методики */}
         <section 
           ref={why2Ref} 
           className={`why-section ${isVisible.why2 ? 'fade-in' : ''}`}
@@ -195,7 +185,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Секція 3: Багато мов */}
         <section 
           ref={why3Ref} 
           className={`why-section ${isVisible.why3 ? 'fade-in' : ''}`}
@@ -222,7 +211,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* Секція 4: Онлайн та офлайн */}
         <section 
           ref={why4Ref} 
           className={`why-section ${isVisible.why4 ? 'fade-in' : ''}`}
@@ -250,7 +238,6 @@ const Home: React.FC = () => {
         </section>
       </div>
 
-      {/* Секція з курсами - без фільтра */}
       <section 
         ref={coursesRef} 
         className={`courses-preview ${isVisible.courses ? 'fade-in' : ''}`}
@@ -281,7 +268,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Секція з інструкторами */}
       <section 
         ref={instructorsRef} 
         className={`instructors-preview ${isVisible.instructors ? 'fade-in' : ''}`}
@@ -302,7 +288,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Секція статистики */}
       <section 
         ref={statsRef} 
         className={`stats ${isVisible.stats ? 'fade-in' : ''}`}

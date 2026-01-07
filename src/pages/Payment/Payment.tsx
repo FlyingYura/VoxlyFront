@@ -36,20 +36,19 @@ const Payment: React.FC = () => {
   if (!course || !user) return null;
 
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
-    if (value.length > 16) value = value.slice(0, 16); // Максимум 16 цифр
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 16) value = value.slice(0, 16);
     setPaymentData(prev => ({ ...prev, cardNumber: value }));
   };
 
   const handleCardHolderChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value = e.target.value.replace(/[^A-Za-zА-Яа-яіІїЇєЄ\s]/g, ''); // Тільки літери та пробіли
+    let value = e.target.value.replace(/[^A-Za-zА-Яа-яіІїЇєЄ\s]/g, '');
     setPaymentData(prev => ({ ...prev, cardHolder: value.toUpperCase() }));
   };
 
   const handleExpiryDateChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
+    let value = e.target.value.replace(/\D/g, '');
     if (value.length > 4) value = value.slice(0, 4);
-    // Додаємо "/" після 2 цифр
     if (value.length >= 2) {
       value = value.slice(0, 2) + '/' + value.slice(2);
     }
@@ -57,8 +56,8 @@ const Payment: React.FC = () => {
   };
 
   const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let value = e.target.value.replace(/\D/g, ''); // Тільки цифри
-    if (value.length > 3) value = value.slice(0, 3); // Максимум 3 цифри
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 3) value = value.slice(0, 3);
     setPaymentData(prev => ({ ...prev, cvv: value }));
   };
 
@@ -73,7 +72,6 @@ const Payment: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Валідація
     if (!paymentData.cardNumber || paymentData.cardNumber.length !== 16) {
       alert('Номер карти повинен містити 16 цифр');
       return;
@@ -102,33 +100,27 @@ const Payment: React.FC = () => {
     setIsProcessing(true);
     
     try {
-      // Отримуємо актуальні дані користувача
       const currentUser = await refreshUserData();
       if (!currentUser) {
         throw new Error('Не вдалося отримати дані користувача');
       }
 
-      // Оновлюємо масиви курсів
       const updatedPaidCourses = currentUser.paidCourses || [];
       const updatedEnrolledCourses = currentUser.enrolledCourses || [];
 
-      // Додаємо курс до оплачених, якщо його там ще немає
       if (!updatedPaidCourses.includes(courseId)) {
         updatedPaidCourses.push(courseId);
       }
 
-      // Додаємо курс до записаних, якщо його там ще немає
       if (!updatedEnrolledCourses.includes(courseId)) {
         updatedEnrolledCourses.push(courseId);
       }
 
-      // Оновлюємо користувача через API
       const updatedUser = await updateUser({
         paidCourses: updatedPaidCourses,
         enrolledCourses: updatedEnrolledCourses,
       });
 
-      // Оновлюємо локальний стан
       setUser(updatedUser);
 
       alert('Оплата успішна! Ви записані на курс.');

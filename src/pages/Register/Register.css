@@ -149,3 +149,33 @@
     font-size: 2rem;
   }
 }
+
+@media (max-width: 390px) {
+  .register-page {
+    padding: 1rem;
+  }
+
+  .register-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .register-card h1 {
+    font-size: 1.75rem;
+  }
+
+  .register-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .error-message {
+    padding: 10px 12px;
+    font-size: 0.8125rem;
+    margin-bottom: 1rem;
+  }
+
+  .google-login-button {
+    padding: 10px 20px;
+    font-size: 0.875rem;
+  }
+}

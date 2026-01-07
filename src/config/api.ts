@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-// Базовий URL API (за замовчуванням для локальної розробки)
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-// Створюємо екземпляр axios з базовою конфігурацією
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -11,7 +9,6 @@ const api = axios.create({
   },
 });
 
-// Interceptor для додавання токену авторизації
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('firebaseIdToken');
@@ -25,12 +22,10 @@ api.interceptors.request.use(
   }
 );
 
-// Interceptor для обробки помилок
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Токен недійсний, видаляємо його
       localStorage.removeItem('firebaseIdToken');
       localStorage.removeItem('currentUser');
       window.location.href = '/login';
