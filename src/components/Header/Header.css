@@ -81,10 +81,60 @@
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+@media (max-width: 768px) {
+  .header-actions .btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 8px !important;
+  }
+  
+  .header-actions .btn-outline {
+    border-width: 1px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions .btn {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    border-radius: 6px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .header-actions .btn {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+    border-radius: 6px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-actions .btn {
+    padding: 3px 6px !important;
+    font-size: 9px !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-actions .btn {
+    padding: 3px 5px !important;
+    font-size: 8px !important;
+    border-radius: 4px !important;
+  }
 }
 
 .header-btn {
   text-decoration: none;
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .user-name {
@@ -162,8 +212,21 @@
   }
 
   .header-btn {
-    padding: 8px 16px;
-    font-size: 14px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  
+  .header-actions .header-btn .btn,
+  .header-actions a .btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    min-width: 0 !important;
+    border-radius: 8px !important;
+    white-space: nowrap !important;
+  }
+  
+  .header-actions .header-btn .btn-outline {
+    border-width: 1px !important;
   }
 }
 
@@ -173,27 +236,73 @@
   }
   
   .header-container {
-    gap: 1rem;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .header-actions {
+    gap: 0.4rem;
+  }
+
+  .header-btn {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  
+  .header-actions .header-btn .btn,
+  .header-actions a .btn {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    min-width: 0 !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+  }
+  
+  .header-actions .header-btn .btn-outline {
+    border-width: 1px !important;
   }
 }
 
 @media (max-width: 390px) {
   .header-container {
-    padding: 0.75rem 1rem;
-    gap: 0.75rem;
+    padding: 0.6rem 0.5rem;
+    gap: 0.4rem;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    min-width: 0;
   }
 
   .logo-image {
-    height: 32px;
+    height: 28px;
+    max-width: 80px;
   }
 
   .header-actions {
     gap: 0.25rem;
+    flex-shrink: 1;
+    min-width: 0;
   }
 
   .header-btn {
-    padding: 6px 12px;
-    font-size: 12px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .header-actions .header-btn .btn,
+  .header-actions a .btn {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+    min-width: 0 !important;
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+  }
+  
+  .header-actions .header-btn .btn-outline,
+  .header-actions a .btn-outline {
+    border-width: 1px !important;
   }
 
   .nav {
@@ -203,5 +312,69 @@
   .nav-link {
     padding: 0.5rem 0.75rem;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-container {
+    padding: 0.5rem 0.4rem;
+    gap: 0.3rem;
+  }
+
+  .logo-image {
+    height: 26px;
+  }
+
+  .header-actions {
+    gap: 0.2rem;
+    flex-shrink: 1;
+  }
+
+  .header-btn {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .header-actions .header-btn .btn,
+  .header-actions a .btn {
+    padding: 3px 6px !important;
+    font-size: 9px !important;
+    min-width: 0 !important;
+    border-radius: 5px !important;
+    white-space: nowrap !important;
+  }
+  
+  .header-actions .header-btn .btn-outline,
+  .header-actions a .btn-outline {
+    border-width: 1px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-container {
+    padding: 0.4rem 0.3rem;
+    gap: 0.2rem;
+  }
+
+  .logo-image {
+    height: 24px;
+    max-width: 70px;
+  }
+
+  .header-actions {
+    gap: 0.15rem;
+  }
+
+  .header-actions .header-btn .btn,
+  .header-actions a .btn {
+    padding: 3px 5px !important;
+    font-size: 8px !important;
+    border-radius: 4px !important;
+    white-space: nowrap !important;
+  }
+  
+  .header-actions .header-btn .btn-outline,
+  .header-actions a .btn-outline {
+    border-width: 1px !important;
   }
 }

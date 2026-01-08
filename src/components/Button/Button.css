@@ -101,3 +101,69 @@
 .btn:active:not(:disabled) {
   animation: buttonPress 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+@media (max-width: 768px) {
+  .header-actions .header-btn .btn,
+  .header-actions a .btn,
+  .header-btn .btn {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 8px !important;
+  }
+  
+  .header-actions .header-btn .btn-outline,
+  .header-actions a .btn-outline,
+  .header-btn .btn-outline {
+    border-width: 1px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-actions .header-btn .btn,
+  .header-actions a .btn,
+  .header-btn .btn {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .header-actions .header-btn .btn,
+  .header-actions a .btn,
+  .header-btn .btn {
+    padding: 4px 8px !important;
+    font-size: 10px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 6px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .header-actions .header-btn .btn,
+  .header-actions a .btn,
+  .header-btn .btn {
+    padding: 3px 6px !important;
+    font-size: 9px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 5px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .header-actions .header-btn .btn,
+  .header-actions a .btn,
+  .header-btn .btn {
+    padding: 3px 5px !important;
+    font-size: 8px !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 4px !important;
+  }
+}
