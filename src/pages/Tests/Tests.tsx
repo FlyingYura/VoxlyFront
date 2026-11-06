@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { courses } from '../../utils/data';
 import { getCurrentUser } from '../../utils/auth';
-import { calculateCourseProgress } from '../../utils/progress';
+import { calculateCourseProgress, TEST_PASS_THRESHOLD } from '../../utils/progress';
 import api from '../../config/api';
 import type { Test } from '../../types';
 import Card from '../../components/Card/Card';
@@ -132,6 +132,31 @@ const Tests: React.FC = () => {
                 console.error('Error fetching existing progress:', error);
               }
 
+              let testTopic = course.roadmap.find(t => t.testId === selectedTest.id);
+
+              if (!testTopic) {
+                testTopic = course.roadmap.find(t =>
+                  t.subtopics?.some(st => st.testId === selectedTest.id)
+                );
+              }
+
+              if (!testTopic) {
+                testTopic = course.roadmap.find(t => t.id === selectedTest.id);
+              }
+
+              if (testTopic && testTopic.subtopics) {
+                const testResult = (updatedUser.testResults || []).find(
+                  (r: any) => r.testId === selectedTest.id
+                );
+                if (testResult) {
+                  const testPercentage = (testResult.score / testResult.maxScore) * 100;
+                  if (testPercentage >= TEST_PASS_THRESHOLD) {
+                    const topicSubtopicIds = testTopic.subtopics.map(st => st.id);
+                    existingCompletedSubtopics = [...new Set([...existingCompletedSubtopics, ...topicSubtopicIds])];
+                  }
+                }
+              }
+
               const { progressPercentage } = calculateCourseProgress(
                 course,
                 updatedUser.testResults || [],
@@ -146,18 +171,18 @@ const Tests: React.FC = () => {
                     );
                     if (testResult) {
                       const percentage = (testResult.score / testResult.maxScore) * 100;
-                      if (percentage >= 80) return true;
+                      if (percentage >= TEST_PASS_THRESHOLD) return true;
                     }
                   }
-                  
+
                   const topicTestResult = (updatedUser.testResults || []).find(
                     (r: any) => r.testId === topic.id
                   );
                   if (topicTestResult) {
                     const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
-                    if (percentage >= 80) return true;
+                    if (percentage >= TEST_PASS_THRESHOLD) return true;
                   }
-                  
+
                   if (topic.subtopics) {
                     for (const subtopic of topic.subtopics) {
                       if (subtopic.type === 'test' && subtopic.testId) {
@@ -166,40 +191,15 @@ const Tests: React.FC = () => {
                         );
                         if (subtopicTestResult) {
                           const percentage = (subtopicTestResult.score / subtopicTestResult.maxScore) * 100;
-                          if (percentage >= 80) return true;
+                          if (percentage >= TEST_PASS_THRESHOLD) return true;
                         }
                       }
                     }
                   }
-                  
+
                   return false;
                 })
                 .map(topic => topic.id);
-
-              let testTopic = course.roadmap.find(t => t.testId === selectedTest.id);
-              
-              if (!testTopic) {
-                testTopic = course.roadmap.find(t => 
-                  t.subtopics?.some(st => st.testId === selectedTest.id)
-                );
-              }
-              
-              if (!testTopic) {
-                testTopic = course.roadmap.find(t => t.id === selectedTest.id);
-              }
-              
-              if (testTopic && testTopic.subtopics) {
-                const testResult = (updatedUser.testResults || []).find(
-                  (r: any) => r.testId === selectedTest.id
-                );
-                if (testResult) {
-                  const testPercentage = (testResult.score / testResult.maxScore) * 100;
-                  if (testPercentage >= 80) {
-                    const topicSubtopicIds = testTopic.subtopics.map(st => st.id);
-                    existingCompletedSubtopics = [...new Set([...existingCompletedSubtopics, ...topicSubtopicIds])];
-                  }
-                }
-              }
 
               await api.post('/api/users/me/progress', {
                 courseId,
@@ -405,7 +405,7 @@ const Tests: React.FC = () => {
   if (selectedTest && isSubmitted && score !== null) {
     const maxScore = selectedTest.questions.reduce((sum, q) => sum + q.points, 0);
     const percentage = Math.round((score / maxScore) * 100);
-    const passed = percentage >= 67;
+    const passed = percentage >= TEST_PASS_THRESHOLD;
     const weakTopics: string[] = [];
 
     selectedTest.questions.forEach((question, index) => {
@@ -427,7 +427,7 @@ const Tests: React.FC = () => {
                     cy="50"
                     r="40"
                     fill="none"
-                    stroke="#e8e5e0"
+                    stroke="var(--border)"
                     strokeWidth="8"
                   />
                   <circle
@@ -435,7 +435,7 @@ const Tests: React.FC = () => {
                     cy="50"
                     r="40"
                     fill="none"
-                    stroke={passed ? "#8B7355" : "#d32f2f"}
+                    stroke={passed ? "var(--accent)" : "#d32f2f"}
                     strokeWidth="8"
                     strokeDasharray={`${(percentage / 100) * 251.2} 251.2`}
                     strokeDashoffset="0"

@@ -14,6 +14,7 @@
   --accent: #4e7a45;
   --accent-2: #3f6638;
   --accent-soft: rgba(78, 122, 69, 0.12);
+  --accent-border: rgba(78, 122, 69, 0.35);
   --border: #d7d0c3;
   --shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
   --radius: 4px;
@@ -29,6 +30,7 @@
   --accent: #8fbf7a;
   --accent-2: #7eaa6c;
   --accent-soft: rgba(143, 191, 122, 0.16);
+  --accent-border: rgba(143, 191, 122, 0.4);
   --border: #3a4136;
   --shadow: none;
   --header-bg: #1d221b;
@@ -36,6 +38,7 @@
 
 :root {
   font-family: var(--font);
+  --header-h: 72px;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
@@ -70,6 +73,9 @@ body {
 }
 
 @media (max-width: 768px) {
+  :root {
+    --header-h: 64px;
+  }
   body {
     font-size: 14px;
   }

@@ -52,7 +52,11 @@ const ProfileDropdown: React.FC = () => {
         aria-expanded={isOpen}
       >
         <div className="profile-avatar-icon">
-          {user.name.charAt(0).toUpperCase()}
+          {user.avatarUrl ? (
+            <img src={user.avatarUrl} alt={user.name} className="avatar-img" />
+          ) : (
+            user.name.charAt(0).toUpperCase()
+          )}
         </div>
       </button>
 
@@ -60,7 +64,11 @@ const ProfileDropdown: React.FC = () => {
         <div className="dropdown-menu">
           <div className="dropdown-header">
             <div className="dropdown-avatar">
-              {user.name.charAt(0).toUpperCase()}
+              {user.avatarUrl ? (
+                <img src={user.avatarUrl} alt={user.name} className="avatar-img" />
+              ) : (
+                user.name.charAt(0).toUpperCase()
+              )}
             </div>
             <div className="dropdown-user-info">
               <div className="dropdown-name">{user.name}</div>

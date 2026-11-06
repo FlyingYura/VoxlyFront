@@ -68,10 +68,6 @@ const Home: React.FC = () => {
     };
   }, [isVisible]);
 
-  const handleEnroll = (courseId: string) => {
-    alert(`Ви записалися на курс! ID: ${courseId}`);
-  };
-
   return (
     <div className="home">
       <section className="hero">
@@ -221,10 +217,7 @@ const Home: React.FC = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
                 className={`${isVisible.courses ? 'fade-in' : ''}`}
               >
-                <CourseCard
-                  course={course}
-                  onEnroll={handleEnroll}
-                />
+                <CourseCard course={course} />
               </div>
             ))}
           </div>

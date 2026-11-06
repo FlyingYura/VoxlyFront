@@ -13,7 +13,7 @@
 }
 
 .course-preview-modal {
-  background: #ffffff;
+  background: var(--surface);
   border-radius: var(--radius);
   padding: 2rem;
   max-width: 700px;
@@ -43,7 +43,7 @@
 }
 
 .modal-close:hover {
-  background: #f0f0f0;
+  background: var(--surface-2);
   color: var(--text);
 }
 
@@ -86,21 +86,21 @@
 }
 
 .level-початковий {
-  background: rgba(139, 115, 85, 0.1);
+  background: var(--accent-soft);
   color: var(--accent);
-  border: 1px solid rgba(139, 115, 85, 0.3);
+  border: 1px solid var(--accent-border);
 }
 
 .level-середній {
-  background: rgba(139, 115, 85, 0.15);
+  background: var(--accent-soft);
   color: var(--accent);
-  border: 1px solid rgba(139, 115, 85, 0.4);
+  border: 1px solid var(--accent-border);
 }
 
 .level-продвинутий {
-  background: rgba(139, 115, 85, 0.2);
+  background: var(--accent-soft);
   color: var(--accent);
-  border: 1px solid rgba(139, 115, 85, 0.5);
+  border: 1px solid var(--accent-border);
 }
 
 .course-preview-description {
@@ -162,7 +162,7 @@
 
 .course-preview-topics li {
   padding: 0.75rem 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border);
   color: var(--muted);
   line-height: 1.6;
   word-wrap: break-word;

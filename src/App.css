@@ -9,4 +9,11 @@
   flex: 1;
   width: 100%;
   background: var(--bg);
+  padding-top: 72px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 64px;
+  }
 }

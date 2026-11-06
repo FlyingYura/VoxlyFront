@@ -3,7 +3,7 @@ import './Button.css';
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   variant?: 'primary' | 'secondary' | 'outline';
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;

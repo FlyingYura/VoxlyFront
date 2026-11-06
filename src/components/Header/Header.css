@@ -1,15 +1,23 @@
 .header {
   background: var(--header-bg);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
   border-bottom: 1px solid var(--border);
+  transition: transform 0.3s ease;
+}
+
+.header-hidden {
+  transform: translateY(-100%);
 }
 
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.85rem 2rem;
+  height: 72px;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -81,7 +89,8 @@
 
 @media (max-width: 768px) {
   .header-container {
-    padding: 1rem;
+    height: 64px;
+    padding: 0 1rem;
   }
 
   .logo-image {

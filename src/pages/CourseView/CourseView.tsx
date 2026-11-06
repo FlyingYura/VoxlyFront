@@ -2,11 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { courses } from '../../utils/data';
 import { getCurrentUser } from '../../utils/auth';
-import { calculateTopicProgress, calculateCourseProgress } from '../../utils/progress';
-import type { CourseTopic, CourseSubtopic } from '../../types';
+import { renderCourseContent } from '../../utils/renderContent';
+import { calculateTopicProgress, calculateCourseProgress, TEST_PASS_THRESHOLD } from '../../utils/progress';
+import type { CourseTopic, CourseSubtopic, LearningMaterial } from '../../types';
 import api from '../../config/api';
 import Card from '../../components/Card/Card';
 import './CourseView.css';
+
+const SUBTOPIC_TYPE_LABELS: Record<string, string> = {
+  theory: 'Теорія',
+  video: 'Відео',
+  practice: 'Практика',
+  test: 'Тест',
+};
 
 const CourseView: React.FC = () => {
   const { courseId, topicId, subtopicId } = useParams<{ courseId: string; topicId?: string; subtopicId?: string }>();
@@ -15,6 +23,7 @@ const CourseView: React.FC = () => {
   const [user, setUser] = useState(getCurrentUser());
   const [expandedTopics, setExpandedTopics] = useState<Set<string>>(new Set());
   const [completedSubtopics, setCompletedSubtopics] = useState<string[]>([]);
+  const [openMaterialId, setOpenMaterialId] = useState<string | null>(null);
 
   useEffect(() => {
     const currentUser = getCurrentUser();
@@ -96,6 +105,26 @@ const CourseView: React.FC = () => {
   const selectedTopic = course.roadmap?.find(t => t.id === topicId);
   const selectedSubtopic = selectedTopic?.subtopics?.find(st => st.id === subtopicId);
 
+  useEffect(() => {
+    if (!subtopicId || !selectedSubtopic || selectedSubtopic.type === 'test') return;
+    if (completedSubtopics.includes(subtopicId)) return;
+
+    const markIfAtBottom = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const reachedBottom = scrollable <= 40 || scrollTop / scrollable >= 0.9;
+      if (reachedBottom) {
+        saveProgress(subtopicId);
+        window.removeEventListener('scroll', markIfAtBottom);
+      }
+    };
+
+    window.addEventListener('scroll', markIfAtBottom, { passive: true });
+    markIfAtBottom();
+    return () => window.removeEventListener('scroll', markIfAtBottom);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subtopicId, selectedSubtopic, completedSubtopics]);
+
   const toggleTopic = (topicId: string) => {
     setExpandedTopics(prev => {
       const newSet = new Set(prev);
@@ -123,6 +152,21 @@ const CourseView: React.FC = () => {
     } else {
       navigate(`/course/${courseId}/topic/${topicId}/subtopic/${subtopic.id}`);
     }
+  };
+
+  const downloadMaterial = (material: LearningMaterial) => {
+    const text = material.content
+      ? `${material.title}\n\n${material.description}\n\n${material.content}`
+      : `${material.title}\n\n${material.description}\n\n${material.url || ''}`;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${material.title.replace(/[^\wа-яіїєґА-ЯІЇЄҐ -]/g, '') || 'material'}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   const getTopicProgress = (topic: CourseTopic) => {
@@ -159,7 +203,7 @@ const CourseView: React.FC = () => {
               );
               if (!testResult) return false;
               const percentage = (testResult.score / testResult.maxScore) * 100;
-              return percentage >= 80;
+              return percentage >= TEST_PASS_THRESHOLD;
             })
             .map(topic => topic.id) || [],
           completedSubtopics: newCompletedSubtopics,
@@ -228,7 +272,7 @@ const CourseView: React.FC = () => {
                           const testResult = user?.testResults?.find((tr: any) => tr.testId === subtopic.testId);
                           if (testResult) {
                             const percentage = (testResult.score / testResult.maxScore) * 100;
-                            isCompleted = isCompleted || percentage >= 80;
+                            isCompleted = isCompleted || percentage >= TEST_PASS_THRESHOLD;
                           }
                         }
                         
@@ -236,7 +280,7 @@ const CourseView: React.FC = () => {
                           const topicTestResult = user?.testResults?.find((tr: any) => tr.testId === topic.testId);
                           if (topicTestResult) {
                             const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
-                            if (percentage >= 80) {
+                            if (percentage >= TEST_PASS_THRESHOLD) {
                               isCompleted = true;
                             }
                           }
@@ -271,15 +315,26 @@ const CourseView: React.FC = () => {
         <div className="course-content">
           {selectedSubtopic ? (
             <div className="content-view">
-              <h1>{selectedSubtopic.title}</h1>
+              <div className="subtopic-header">
+                <h1>{selectedSubtopic.title}</h1>
+                <div className="subtopic-meta">
+                  <span className={`subtopic-type-badge type-${selectedSubtopic.type}`}>
+                    {SUBTOPIC_TYPE_LABELS[selectedSubtopic.type] || selectedSubtopic.type}
+                  </span>
+                  {completedSubtopics.includes(subtopicId || '') && (
+                    <span className="completed-badge">Пройдено</span>
+                  )}
+                </div>
+              </div>
+              {selectedTopic?.description && (
+                <p className="topic-description">{selectedTopic.description}</p>
+              )}
               {selectedSubtopic.content && (
-                <div className="content-text">
-                  {selectedSubtopic.content.split('\n').map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
-                  ))}
+                <div className="content-text content-rich">
+                  {renderCourseContent(selectedSubtopic.content)}
                 </div>
               )}
-              
+
               {selectedSubtopic.materials && selectedSubtopic.materials.length > 0 && (
                 <div className="materials-section">
                   <h3>Навчальні матеріали</h3>
@@ -288,13 +343,30 @@ const CourseView: React.FC = () => {
                       <Card key={material.id} className="material-item">
                         <div className="material-header">
                           <span className="material-type-badge">{material.type}</span>
-                          {material.xp && <span className="xp-badge">{material.xp} XP</span>}
+                          {material.xp ? <span className="xp-badge">{material.xp} XP</span> : null}
                         </div>
                         <h4>{material.title}</h4>
                         <p>{material.description}</p>
+                        {material.content && openMaterialId === material.id && (
+                          <div className="material-content-preview">
+                            {renderCourseContent(material.content)}
+                          </div>
+                        )}
                         <div className="material-actions">
-                          <button className="material-btn">Переглянути</button>
-                          <button className="material-btn download">Завантажити</button>
+                          {material.content && (
+                            <button
+                              className="material-btn"
+                              onClick={() => setOpenMaterialId(openMaterialId === material.id ? null : material.id)}
+                            >
+                              {openMaterialId === material.id ? 'Сховати' : 'Переглянути'}
+                            </button>
+                          )}
+                          <button
+                            className="material-btn download"
+                            onClick={() => downloadMaterial(material)}
+                          >
+                            Завантажити
+                          </button>
                         </div>
                       </Card>
                     ))}

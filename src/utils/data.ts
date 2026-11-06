@@ -884,6 +884,219 @@ export const courses: Course[] = [
             points: 10
           }
         ]
+      },
+      {
+        id: 'test_t8_past',
+        courseId: '1',
+        title: 'Тест: Past Simple',
+        description: 'Перевірте знання простого минулого часу: правильні та неправильні дієслова',
+        timeLimit: 20,
+        questions: [
+          {
+            id: 'q_en_t8_1',
+            question: 'Оберіть правильну форму: Yesterday I ___ to the park.',
+            type: 'single',
+            options: ['go', 'went', 'gone', 'going'],
+            correctAnswer: 'went',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_2',
+            question: 'Оберіть правильну форму: She ___ a new phone last week.',
+            type: 'single',
+            options: ['buyed', 'bought', 'buy', 'buys'],
+            correctAnswer: 'bought',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_3',
+            question: 'Оберіть правильне заперечення: I ___ watch TV yesterday.',
+            type: 'single',
+            options: ['didn\'t watched', 'didn\'t watch', 'don\'t watched', 'wasn\'t watch'],
+            correctAnswer: 'didn\'t watch',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_4',
+            question: 'Оберіть правильне питання:',
+            type: 'single',
+            options: ['Did you went there?', 'Did you go there?', 'Do you went there?', 'Did you going there?'],
+            correctAnswer: 'Did you go there?',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_5',
+            question: 'Вставте пропущене слово: They ___ (make) dinner last night.',
+            type: 'text',
+            correctAnswer: 'made',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_6',
+            question: 'Оберіть правильну форму: We ___ home at 8 o\'clock.',
+            type: 'single',
+            options: ['leaved', 'left', 'leaved', 'leave'],
+            correctAnswer: 'left',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_7',
+            question: 'Перекладіть: "Вона не сказала мені правди"',
+            type: 'text',
+            correctAnswer: 'She didn\'t tell me the truth',
+            points: 10
+          },
+          {
+            id: 'q_en_t8_8',
+            question: 'Який маркер часу найкраще підходить для Past Simple?',
+            type: 'single',
+            options: ['every day', 'now', 'yesterday', 'tomorrow'],
+            correctAnswer: 'yesterday',
+            points: 10
+          }
+        ]
+      },
+      {
+        id: 'test_t9_future',
+        courseId: '1',
+        title: 'Тест: Майбутній час',
+        description: 'Перевірте знання will та going to',
+        timeLimit: 20,
+        questions: [
+          {
+            id: 'q_en_t9_1',
+            question: 'Оберіть правильну форму: I think it ___ rain tomorrow.',
+            type: 'single',
+            options: ['will', 'is going to', 'goes to', 'going'],
+            correctAnswer: 'will',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_2',
+            question: 'Оберіть правильну форму: We ___ visit our friends next weekend. We already bought tickets.',
+            type: 'single',
+            options: ['will', 'are going to', 'go to', 'going to'],
+            correctAnswer: 'are going to',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_3',
+            question: 'Оберіть правильне заперечення: I ___ be late.',
+            type: 'single',
+            options: ['will not', 'won\'t', 'doesn\'t will', 'not will'],
+            correctAnswer: 'won\'t',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_4',
+            question: 'Оберіть правильне питання:',
+            type: 'single',
+            options: ['Do you will help me?', 'Will you help me?', 'Are you will help me?', 'You will help me?'],
+            correctAnswer: 'Will you help me?',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_5',
+            question: 'Вставте пропущене слово: She ___ (call) you tonight. — Обіцяє.',
+            type: 'text',
+            correctAnswer: 'will call',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_6',
+            question: 'Оберіть правильну форму: Look at those clouds! It ___ rain.',
+            type: 'single',
+            options: ['will', 'is going to', 'going', 'goes'],
+            correctAnswer: 'is going to',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_7',
+            question: 'Перекладіть: "Ми плануємо переїхати наступного року"',
+            type: 'text',
+            correctAnswer: 'We are going to move next year',
+            points: 10
+          },
+          {
+            id: 'q_en_t9_8',
+            question: 'Оберіть правильну форму: I ___ help you with your bags. (спонтанна пропозиція)',
+            type: 'single',
+            options: ['am going to', 'will', 'going to', 'shall to'],
+            correctAnswer: 'will',
+            points: 10
+          }
+        ]
+      },
+      {
+        id: 'test_t10_modals',
+        courseId: '1',
+        title: 'Тест: Модальні дієслова',
+        description: 'Перевірте знання can, could, must, have to, should',
+        timeLimit: 20,
+        questions: [
+          {
+            id: 'q_en_t10_1',
+            question: 'Оберіть правильну форму: You ___ wear a seatbelt in the car.',
+            type: 'single',
+            options: ['can', 'must', 'should to', 'may'],
+            correctAnswer: 'must',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_2',
+            question: 'Оберіть правильну форму: ___ you swim?',
+            type: 'single',
+            options: ['Can', 'Must', 'Should', 'May to'],
+            correctAnswer: 'Can',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_3',
+            question: 'Оберіть правильну форму: You ___ smoke here. It is forbidden.',
+            type: 'single',
+            options: ['don\'t have to', 'mustn\'t', 'can\'t to', 'shouldn\'t to'],
+            correctAnswer: 'mustn\'t',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_4',
+            question: 'Оберіть правильне питання:',
+            type: 'single',
+            options: ['Could you help me?', 'Can you to help me?', 'Could you to help me?', 'Do you could help me?'],
+            correctAnswer: 'Could you help me?',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_5',
+            question: 'Оберіть правильну форму: You look tired. You ___ go to bed early.',
+            type: 'single',
+            options: ['must', 'should', 'can\'t', 'have to not'],
+            correctAnswer: 'should',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_6',
+            question: 'Вставте пропущене слово: I ___ speak English when I was five. (міг)',
+            type: 'text',
+            correctAnswer: 'could',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_7',
+            question: 'Перекладіть: "Тобі варто більше відпочивати"',
+            type: 'text',
+            correctAnswer: 'You should rest more',
+            points: 10
+          },
+          {
+            id: 'q_en_t10_8',
+            question: 'Оберіть правильну форму: We ___ finish this project by Friday. (зовнішній обов\'язок)',
+            type: 'single',
+            options: ['must', 'have to', 'should', 'can'],
+            correctAnswer: 'have to',
+            points: 10
+          }
+        ]
       }
     ]
   },

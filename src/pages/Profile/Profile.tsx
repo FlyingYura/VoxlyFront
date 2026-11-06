@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentUser } from '../../utils/auth';
 import { courses } from '../../utils/data';
-import { calculateCourseProgress } from '../../utils/progress';
+import { calculateCourseProgress, TEST_PASS_THRESHOLD } from '../../utils/progress';
+import api from '../../config/api';
 import Card from '../../components/Card/Card';
 import './Profile.css';
 
@@ -10,6 +11,7 @@ const Profile: React.FC = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(getCurrentUser());
   const [activeTab, setActiveTab] = useState<'all' | 'completed' | 'in-progress'>('all');
+  const [serverProgress, setServerProgress] = useState<Record<string, { progress: number; completedSubtopics: string[] }>>({});
 
   useEffect(() => {
     const currentUser = getCurrentUser();
@@ -18,23 +20,71 @@ const Profile: React.FC = () => {
       return;
     }
     setUser(currentUser);
+
+    const userCourseIds = courses
+      .filter(course =>
+        currentUser.enrolledCourses?.includes(course.id) || currentUser.paidCourses?.includes(course.id)
+      )
+      .map(course => course.id);
+
+    userCourseIds.forEach(async (courseId) => {
+      try {
+        const response = await api.get(`/api/users/me/progress/${courseId}`);
+        if (response.data.success && response.data.progress) {
+          setServerProgress(prev => ({
+            ...prev,
+            [courseId]: {
+              progress: response.data.progress.progress ?? 0,
+              completedSubtopics: response.data.progress.completedSubtopics || [],
+            },
+          }));
+        }
+      } catch {
+        /* progress unavailable */
+      }
+    });
   }, [navigate]);
 
   if (!user) return null;
 
-  const userCourses = courses.filter(course => 
+  const userCourses = courses.filter(course =>
     user.enrolledCourses?.includes(course.id) || user.paidCourses?.includes(course.id)
   );
 
-  const completedCourses = userCourses.filter(course => {
-    const { completedTopics, totalTopics } = calculateCourseProgress(course, user.testResults || []);
-    return totalTopics > 0 && completedTopics === totalTopics;
-  });
+  const getCourseProgress = (course: typeof courses[0]) => {
+    const saved = serverProgress[course.id];
+    const { progressPercentage } = calculateCourseProgress(
+      course,
+      user.testResults || [],
+      saved?.completedSubtopics
+    );
+    // Серверний прогрес враховує пройдені субтеми — він точніший
+    return saved ? Math.max(saved.progress, progressPercentage) : progressPercentage;
+  };
 
-  const inProgressCourses = userCourses.filter(course => {
-    const { completedTopics, totalTopics } = calculateCourseProgress(course, user.testResults || []);
-    return totalTopics === 0 || completedTopics < totalTopics;
-  });
+  const getSubtopicStats = (course: typeof courses[0]) => {
+    const roadmap = course.roadmap || [];
+    const items = roadmap.flatMap(topic =>
+      topic.subtopics && topic.subtopics.length > 0
+        ? topic.subtopics
+        : [{ id: topic.id, type: topic.testId ? 'test' : 'theory', testId: topic.testId } as any]
+    );
+    const completedSet = new Set(serverProgress[course.id]?.completedSubtopics || []);
+    const testResults = user.testResults || [];
+    const done = items.filter(item => {
+      if (completedSet.has(item.id)) return true;
+      if (item.type === 'test' && item.testId) {
+        const result = testResults.find((r: any) => r.testId === item.testId);
+        if (result && result.maxScore > 0 && (result.score / result.maxScore) * 100 >= TEST_PASS_THRESHOLD) return true;
+      }
+      return false;
+    }).length;
+    return { done, total: items.length };
+  };
+
+  const completedCourses = userCourses.filter(course => getCourseProgress(course) >= 100);
+
+  const inProgressCourses = userCourses.filter(course => getCourseProgress(course) < 100);
 
   const displayedCourses = activeTab === 'all' 
     ? userCourses 
@@ -48,9 +98,8 @@ const Profile: React.FC = () => {
   const totalXP = (completedTests * 20) + (user.testResults?.reduce((sum, result) => sum + result.score, 0) || 0);
 
   const getProgressPercentage = (course: typeof courses[0]) => {
-    const { progressPercentage } = calculateCourseProgress(course, user.testResults || []);
     // Обмежуємо прогрес від 0 до 100%
-    return Math.min(100, Math.max(0, progressPercentage));
+    return Math.min(100, Math.max(0, getCourseProgress(course)));
   };
 
   return (
@@ -90,7 +139,7 @@ const Profile: React.FC = () => {
                 ) : (
                   displayedCourses.map(course => {
                     const progress = getProgressPercentage(course);
-                    const { completedTopics, totalTopics } = calculateCourseProgress(course, user.testResults || []);
+                    const { done, total } = getSubtopicStats(course);
 
                     return (
                       <Card 
@@ -123,8 +172,7 @@ const Profile: React.FC = () => {
                         </div>
                         <div className="course-progress">
                           <div className="progress-info">
-                            <span>Теми вивчені: {completedTopics}/{totalTopics}</span>
-                            <span>Теми в процесі: {totalTopics > completedTopics ? totalTopics - completedTopics : 0}</span>
+                            <span>Уроків пройдено: {done}/{total} · {progress}% завершено</span>
                           </div>
                           <div className="progress-bar">
                             <div 
@@ -145,7 +193,11 @@ const Profile: React.FC = () => {
             <Card className="profile-widget">
               <div className="profile-header">
                 <div className="profile-avatar">
-                  {user.name.charAt(0).toUpperCase()}
+                  {user.avatarUrl ? (
+                    <img src={user.avatarUrl} alt={user.name} className="avatar-img" />
+                  ) : (
+                    user.name.charAt(0).toUpperCase()
+                  )}
                 </div>
                 <div className="profile-info">
                   <h3>{user.name}</h3>
@@ -189,7 +241,7 @@ const Profile: React.FC = () => {
                       cy="50"
                       r="40"
                       fill="none"
-                      stroke="#e8e5e0"
+                      stroke="var(--border)"
                       strokeWidth="8"
                     />
                     <circle
@@ -197,7 +249,7 @@ const Profile: React.FC = () => {
                       cy="50"
                       r="40"
                       fill="none"
-                      stroke="#8B7355"
+                      stroke="var(--accent)"
                       strokeWidth="8"
                       strokeDasharray={`${(completedTests / totalTests) * 251.2} 251.2`}
                       strokeDashoffset="0"

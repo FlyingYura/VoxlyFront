@@ -1,59 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Course } from '../../types';
 import Card from '../Card/Card';
 import Button from '../Button/Button';
-import CoursePreviewModal from '../CoursePreviewModal/CoursePreviewModal';
-import flagFR from '/src/assets/fr.svg';
-import flagES from '/src/assets/sp.svg';
-import flagGB from '/src/assets/uk.svg';
-import flagIT from '/src/assets/it.svg';
-import flagPL from '/src/assets/pl.svg';
-import flagUA from '/src/assets/ua.svg';
-import flagDE from '/src/assets/ger.svg';
+import { languageToFlag } from '../../utils/flags';
 import './CourseCard.css';
 
 interface CourseCardProps {
   course: Course;
-  onEnroll?: (courseId: string) => void;
   onPay?: (courseId: string) => void;
   showPayButton?: boolean;
+  onViewDetails?: (courseId: string) => void;
 }
 
-const languageToFlag: Record<string, string> = {
-  'Французька': flagFR,
-  'Іспанська': flagES,
-  'Англійська': flagGB,
-  'Італійська': flagIT,
-  'Польська': flagPL,
-  'Українська': flagUA,
-  'Німецька': flagDE,
-};
-
-const CourseCard: React.FC<CourseCardProps> = ({ course, onEnroll, onPay, showPayButton }) => {
-  const [showModal, setShowModal] = useState(false);
+const CourseCard: React.FC<CourseCardProps> = ({ course, onPay, showPayButton, onViewDetails }) => {
+  const navigate = useNavigate();
   const flagUrl = languageToFlag[course.language];
 
   const handleView = () => {
-    setShowModal(true);
-  };
-
-  const handleEnrollFromModal = () => {
-    setShowModal(false);
-    if (onEnroll) {
-      onEnroll(course.id);
-    }
-  };
-
-  const handlePayFromModal = () => {
-    setShowModal(false);
-    if (onPay) {
-      onPay(course.id);
+    if (onViewDetails) {
+      onViewDetails(course.id);
+    } else {
+      navigate(`/courses/${course.id}`);
     }
   };
 
   return (
-    <>
-    <Card className="course-card">
+    <Card className="course-card clickable" onClick={handleView}>
       <div className="course-header">
         <span className="course-language">{course.language}</span>
         {flagUrl && (
@@ -65,11 +38,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onEnroll, onPay, showPa
           {course.level}
         </span>
       </div>
-      
+
       <h3 className="course-title">{course.title}</h3>
-      
+
       <p className="course-description">{course.description}</p>
-      
+
       <div className="course-info">
         <div className="info-item">
           <span className="info-label">Викладач:</span>
@@ -84,41 +57,36 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, onEnroll, onPay, showPa
           <span className="info-value">{course.studentsCount}</span>
         </div>
       </div>
-      
+
       <div className="course-footer">
         <div className="course-price">
           <span className="price-amount">{course.price} ₴</span>
         </div>
         <div className="course-actions">
-          {showPayButton && onPay ? (
-            <Button 
-              variant="secondary" 
-              onClick={handleView}
+          {showPayButton && onPay && (
+            <Button
+              variant="secondary"
+              onClick={(e) => {
+                e?.stopPropagation();
+                onPay(course.id);
+              }}
             >
-              Переглянути
+              Оплатити
             </Button>
-          ) : onEnroll ? (
-            <Button 
-              variant="primary" 
-              onClick={handleView}
-            >
-              Переглянути
-            </Button>
-          ) : null}
+          )}
+          <Button
+            variant="primary"
+            onClick={(e) => {
+              e?.stopPropagation();
+              handleView();
+            }}
+          >
+            Детальніше
+          </Button>
         </div>
       </div>
     </Card>
-    {showModal && (
-      <CoursePreviewModal
-        course={course}
-        onClose={() => setShowModal(false)}
-        onEnroll={showPayButton && onPay ? handlePayFromModal : handleEnrollFromModal}
-        isPayment={showPayButton && !!onPay}
-      />
-    )}
-    </>
   );
 };
 
 export default CourseCard;
-

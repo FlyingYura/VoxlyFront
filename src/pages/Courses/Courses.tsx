@@ -43,27 +43,7 @@ const Courses: React.FC = () => {
   }, [searchTerm, selectedLanguage, selectedLevel, sortBy]);
 
   const handleEnroll = (courseId: string) => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
-
-    const course = courses.find(c => c.id === courseId);
-    if (course) {
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const userIndex = users.findIndex((u: any) => u.id === user.id);
-      
-      if (userIndex !== -1) {
-        if (!users[userIndex].enrolledCourses.includes(courseId)) {
-          users[userIndex].enrolledCourses.push(courseId);
-          localStorage.setItem('users', JSON.stringify(users));
-          localStorage.setItem('currentUser', JSON.stringify(users[userIndex]));
-          setUser(users[userIndex]);
-        }
-      }
-      
-      navigate(`/payment/${courseId}`);
-    }
+    navigate(`/courses/${courseId}`);
   };
 
   const handlePay = (courseId: string) => {
@@ -173,7 +153,6 @@ const Courses: React.FC = () => {
                   <CourseCard
                     key={course.id}
                     course={course}
-                    onEnroll={!isEnrolled ? handleEnroll : undefined}
                     onPay={showPayButton ? handlePay : undefined}
                     showPayButton={showPayButton}
                   />

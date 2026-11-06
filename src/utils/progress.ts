@@ -1,5 +1,7 @@
 import type { Course, CourseTopic, TestResult } from '../types';
 
+export const TEST_PASS_THRESHOLD = 70;
+
 export const calculateCourseProgress = (
   course: Course,
   userTestResults: TestResult[],
@@ -40,7 +42,7 @@ export const calculateCourseProgress = (
         const testResult = userTestResults.find(result => result.testId === topic.testId);
         if (testResult) {
           const percentage = (testResult.score / testResult.maxScore) * 100;
-          topicTestPassed = percentage >= 80;
+          topicTestPassed = percentage >= TEST_PASS_THRESHOLD;
         }
       }
       
@@ -48,7 +50,7 @@ export const calculateCourseProgress = (
         const topicTestResult = userTestResults.find(result => result.testId === topic.id);
         if (topicTestResult) {
           const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
-          topicTestPassed = percentage >= 80;
+          topicTestPassed = percentage >= TEST_PASS_THRESHOLD;
         }
       }
       
@@ -58,7 +60,7 @@ export const calculateCourseProgress = (
             const subtopicTestResult = userTestResults.find(result => result.testId === subtopic.testId);
             if (subtopicTestResult) {
               const percentage = (subtopicTestResult.score / subtopicTestResult.maxScore) * 100;
-              if (percentage >= 80) {
+              if (percentage >= TEST_PASS_THRESHOLD) {
                 topicTestPassed = true;
                 break;
               }
@@ -82,7 +84,7 @@ export const calculateCourseProgress = (
       const testResult = userTestResults.find(result => result.testId === topic.testId);
       if (testResult) {
         const percentage = (testResult.score / testResult.maxScore) * 100;
-        totalProgress += percentage >= 80 ? 1 : 0;
+        totalProgress += percentage >= TEST_PASS_THRESHOLD ? 1 : 0;
       }
       totalItems += 1;
     }
@@ -103,7 +105,7 @@ export const isTopicCompleted = (
     const testResult = userTestResults.find(result => result.testId === topic.testId);
     if (testResult) {
       const percentage = (testResult.score / testResult.maxScore) * 100;
-      if (percentage >= 80) return true;
+      if (percentage >= TEST_PASS_THRESHOLD) return true;
     }
   }
 
@@ -111,7 +113,7 @@ export const isTopicCompleted = (
     const topicTestResult = userTestResults.find(result => result.testId === topic.id);
     if (topicTestResult) {
       const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
-      if (percentage >= 80)       return true;
+      if (percentage >= TEST_PASS_THRESHOLD)       return true;
     }
 
     for (const subtopic of topic.subtopics) {
@@ -119,7 +121,7 @@ export const isTopicCompleted = (
         const subtopicTestResult = userTestResults.find(result => result.testId === subtopic.testId);
         if (subtopicTestResult) {
           const percentage = (subtopicTestResult.score / subtopicTestResult.maxScore) * 100;
-          if (percentage >= 80) return true;
+          if (percentage >= TEST_PASS_THRESHOLD) return true;
         }
       }
     }
@@ -141,7 +143,7 @@ export const calculateTopicProgress = (
     const topicTestResult = userTestResults.find(result => result.testId === topic.id);
     if (topicTestResult) {
       const percentage = (topicTestResult.score / topicTestResult.maxScore) * 100;
-      if (percentage >= 80) {
+      if (percentage >= TEST_PASS_THRESHOLD) {
         return 100;
       }
     }
@@ -151,7 +153,7 @@ export const calculateTopicProgress = (
         const subtopicTestResult = userTestResults.find(result => result.testId === subtopic.testId);
         if (subtopicTestResult) {
             const percentage = (subtopicTestResult.score / subtopicTestResult.maxScore) * 100;
-            if (percentage >= 80) {
+            if (percentage >= TEST_PASS_THRESHOLD) {
               return 100;
             }
         }

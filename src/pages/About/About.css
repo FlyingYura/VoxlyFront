@@ -9,6 +9,25 @@
 .about-instructors,
 .about-stats {
   padding: 3.5rem 0;
+  min-height: calc(100vh - var(--header-h));
+  display: flex;
+  align-items: center;
+}
+
+.about-hero,
+.about-mission,
+.about-features,
+.about-instructors,
+.about-stats {
+  width: 100%;
+}
+
+.about-hero .container,
+.about-mission .container,
+.about-features .container,
+.about-instructors .container,
+.about-stats .container {
+  width: 100%;
 }
 
 .about-hero {
@@ -74,7 +93,8 @@
 }
 
 .instructors-grid {
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+  justify-content: center;
 }
 
 .stats-grid {
