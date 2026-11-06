@@ -29,6 +29,11 @@ const ProfileDropdown: React.FC = () => {
     };
   }, [isOpen]);
 
+  const goTo = (path: string) => {
+    navigate(path);
+    setIsOpen(false);
+  };
+
   const handleLogout = async () => {
     await logout();
     setUser(null);
@@ -36,25 +41,21 @@ const ProfileDropdown: React.FC = () => {
     setIsOpen(false);
   };
 
-  const handleProfileClick = () => {
-    navigate('/profile');
-    setIsOpen(false);
-  };
-
   if (!user) return null;
 
   return (
     <div className="profile-dropdown" ref={dropdownRef}>
-      <button 
+      <button
         className="profile-icon-btn"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Profile menu"
+        aria-expanded={isOpen}
       >
         <div className="profile-avatar-icon">
           {user.name.charAt(0).toUpperCase()}
         </div>
       </button>
-      
+
       {isOpen && (
         <div className="dropdown-menu">
           <div className="dropdown-header">
@@ -66,16 +67,18 @@ const ProfileDropdown: React.FC = () => {
               <div className="dropdown-email">{user.email}</div>
             </div>
           </div>
-          
-          <div className="dropdown-divider"></div>
-          
-          <button className="dropdown-item" onClick={handleProfileClick}>
-            <span>Мій профіль</span>
-          </button>
-          
-          <button className="dropdown-item" onClick={handleLogout}>
-            <span>Вийти</span>
-          </button>
+
+          <div className="dropdown-actions">
+            <button className="dropdown-item" onClick={() => goTo('/profile')}>
+              Мої курси
+            </button>
+            <button className="dropdown-item" onClick={() => goTo('/settings')}>
+              Налаштування
+            </button>
+            <button className="dropdown-item dropdown-item-muted" onClick={handleLogout}>
+              Вийти
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -83,4 +86,3 @@ const ProfileDropdown: React.FC = () => {
 };
 
 export default ProfileDropdown;
-

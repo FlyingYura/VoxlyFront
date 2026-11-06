@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
   return (
     <div className="profile-page">
       <div className="container">
-        <h1>Особистий кабінет</h1>
+        <h1>Мої курси</h1>
 
         <div className="profile-layout">
           <div className="profile-main">
@@ -149,10 +149,10 @@ const Profile: React.FC = () => {
                 </div>
                 <div className="profile-info">
                   <h3>{user.name}</h3>
-                  <button className="logout-btn" title="Вийти" onClick={() => {
-                    localStorage.removeItem('currentUser');
-                    navigate('/');
-                  }}>●</button>
+                  <p className="profile-email">{user.email}</p>
+                  <button type="button" className="settings-link" onClick={() => navigate('/settings')}>
+                    Налаштування
+                  </button>
                 </div>
               </div>
             </Card>

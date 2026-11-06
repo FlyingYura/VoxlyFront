@@ -1,7 +1,7 @@
-.courses-page {
+﻿.courses-page {
   min-height: 100vh;
   padding: 2rem 0;
-  background: #d4cec4;
+  background: var(--bg);
 }
 
 .courses-header {
@@ -13,7 +13,7 @@
 .courses-header h1 {
   font-size: 3rem;
   margin: 0 0 1rem 0;
-  color: #2c3e50;
+  color: var(--text);
   font-weight: 700;
   position: relative;
   padding-bottom: 1rem;
@@ -28,19 +28,19 @@
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #8B7355 0%, #9B8366 100%);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   border-radius: 2px;
 }
 
 .courses-header p {
   font-size: 1.25rem;
-  color: #5a5a5a;
+  color: var(--muted);
   margin: 0;
 }
 
 .map-section {
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: var(--radius);
   margin: 0 auto 3rem;
   padding: 2rem;
   max-width: 1200px;
@@ -50,7 +50,7 @@
 .map-title {
   text-align: center;
   margin-bottom: 2rem;
-  color: #2c3e50;
+  color: var(--text);
   font-size: 1.5rem;
   font-weight: 600;
   opacity: 0.9;
@@ -64,7 +64,7 @@
 
 .alternative-title {
   text-align: center;
-  color: #5a5a5a;
+  color: var(--muted);
   font-size: 1.2rem;
   margin-bottom: 2rem;
   font-weight: 500;
@@ -88,30 +88,30 @@
 
 .filter-group label {
   font-weight: 600;
-  color: #2c3e50;
+  color: var(--text);
   font-size: 14px;
 }
 
 .filter-select {
   padding: 12px 16px;
-  border: 2px solid #e8e5e0;
+  border: 2px solid var(--border);
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
   background: #ffffff;
-  color: #2c3e50;
+  color: var(--text);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .filter-select:hover {
-  border-color: #8B7355;
+  border-color: var(--accent);
   box-shadow: 0 4px 12px rgba(139, 115, 85, 0.15);
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: #8B7355;
+  border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
 }
 
@@ -127,12 +127,12 @@
 
 .results-count {
   margin-bottom: 2rem;
-  color: #5a5a5a;
+  color: var(--muted);
   font-weight: 600;
   padding: 1rem;
   background: #ffffff;
   border-radius: 8px;
-  border: 1px solid #e8e5e0;
+  border: 1px solid var(--border);
 }
 
 .courses-grid {
@@ -144,10 +144,10 @@
 .no-results {
   text-align: center;
   padding: 4rem 2rem;
-  color: #5a5a5a;
+  color: var(--muted);
   background: #ffffff;
-  border-radius: 12px;
-  border: 1px solid #e8e5e0;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
 }
 
 .no-results p {

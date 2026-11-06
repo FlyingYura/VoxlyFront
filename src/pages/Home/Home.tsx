@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { courses } from '../../utils/data';
+import { courses, instructors } from '../../utils/data';
 import CourseCard from '../../components/CourseCard/CourseCard';
 import InstructorCard from '../../components/InstructorCard/InstructorCard';
 import Button from '../../components/Button/Button';
@@ -28,38 +28,7 @@ const Home: React.FC = () => {
 
   const featuredCourses = courses.slice(0, 3);
   
-  const featuredInstructors = [
-    {
-      id: '1',
-      name: 'Яджак Роксолана',
-      language: 'Англійська',
-      experience: '5+ років',
-      rating: 4.9,
-      students: 120,
-      description: 'Сертифікований викладач з міжнародним досвідом',
-      image: '/assets/roksa.jpg'
-    },
-    {
-      id: '2',
-      name: 'Криворучко Микола',
-      language: 'Німецька',
-      experience: '7+ років',
-      rating: 4.8,
-      students: 95,
-      description: 'Носій мови, експерт з підготовки до Goethe-Zertifikat',
-      image: '/assets/kolya.jpg'
-    },
-    {
-      id: '3',
-      name: 'Кіліан Мбаппе',
-      language: 'Французька',
-      experience: '4+ років',
-      rating: 4.7,
-      students: 85,
-      description: 'Носій французької мови, спеціаліст з розмовної практики',
-      image: '/assets/mbap.png'
-    }
-  ];
+  const featuredInstructors = instructors.slice(0, 3);
 
   useEffect(() => {
     window.scrollTo(0, 0);

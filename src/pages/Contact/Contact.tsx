@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email || !formData.message) {
       alert('Будь ласка, заповніть всі поля');
       return;
@@ -36,9 +36,8 @@ const Contact: React.FC = () => {
       return;
     }
 
-    console.log('Форма відправлена:', formData);
     setIsSubmitted(true);
-    
+
     setTimeout(() => {
       setFormData({ name: '', email: '', message: '' });
       setIsSubmitted(false);
@@ -49,14 +48,14 @@ const Contact: React.FC = () => {
     <div className="contact-page">
       <div className="contact-header">
         <h1>Зв'яжіться з нами</h1>
-        <p>Ми завжди раді відповісти на ваші питання</p>
+        <p>Напишіть повідомлення або завітайте до школи</p>
       </div>
 
       <div className="contact-content">
         <div className="container">
           <div className="contact-grid">
             <div className="contact-form-section">
-              <Card>
+              <Card className="card-no-hover">
                 <h2>Надішліть нам повідомлення</h2>
                 {isSubmitted ? (
                   <div className="success-message">
@@ -101,35 +100,21 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="contact-info-section">
-              <Card className="contact-info-card">
+              <Card className="contact-info-card card-no-hover">
                 <h2>Контактна інформація</h2>
-                
+
                 <div className="info-item">
                   <div className="info-content">
                     <h3>Адреса</h3>
                     <p>
-                      <a 
-                        href="https://www.google.com/maps/search/?api=1&query=м.+Львів,+вул+Зарицьких+32" 
-                        target="_blank" 
+                      <a
+                        href="https://www.google.com/maps/search/?api=1&query=Дрогобич+Раневицька+12+82106"
+                        target="_blank"
                         rel="noopener noreferrer"
                       >
-                        м. Львів, вул Зарицьких 32
+                        м. Дрогобич, вул. Раневицька, 12, 82106
                       </a>
                     </p>
-                  </div>
-                </div>
-
-                <div className="info-item">
-                  <div className="info-content">
-                    <h3>Телефон</h3>
-                    <p><a href="tel:+380980986653">+380980986653</a></p>
-                  </div>
-                </div>
-
-                <div className="info-item">
-                  <div className="info-content">
-                    <h3>Email</h3>
-                    <p><a href="mailto:prokopivyura@gmail.com">prokopivyura@gmail.com</a></p>
                   </div>
                 </div>
 
@@ -151,4 +136,3 @@ const Contact: React.FC = () => {
 };
 
 export default Contact;
-

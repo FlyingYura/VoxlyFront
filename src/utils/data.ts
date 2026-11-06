@@ -1,4 +1,5 @@
 import type { Course, Instructor } from '../types';
+import { extraCourseDescriptions, extraTopicsByCourse } from './extraCourseTopics';
 
 export const courses: Course[] = [
   {
@@ -9,7 +10,7 @@ export const courses: Course[] = [
     duration: '3 місяці',
     price: 550,
     description: 'Основи англійської мови, граматика, розмовна практика',
-    instructor: 'Яджак Роксолана',
+    instructor: 'Оксана Шевченко',
     studentsCount: 45,
     schedule: [
       { id: 's1', courseId: '1', dayOfWeek: 'Понеділок', time: '18:00', duration: 90, type: 'Лекція' },
@@ -894,7 +895,7 @@ export const courses: Course[] = [
     duration: '4 місяці',
     price: 600,
     description: 'Поглиблене вивчення німецької мови, бізнес-комунікація',
-    instructor: 'Криворучко Микола',
+    instructor: 'Андрій Бондаренко',
     studentsCount: 32,
     schedule: [
       { id: 's4', courseId: '2', dayOfWeek: 'Вівторок', time: '19:00', duration: 90, type: 'Лекція' },
@@ -1163,7 +1164,7 @@ export const courses: Course[] = [
     duration: '2 місяці',
     price: 500,
     description: 'Швидкий курс для тих, хто планує подорож до Франції',
-    instructor: 'Кіліан Мбаппе',
+    instructor: 'Ірина Ткаченко',
     studentsCount: 28,
     schedule: [
       { id: 's6', courseId: '3', dayOfWeek: 'Понеділок', time: '18:30', duration: 60, type: 'Лекція' },
@@ -1310,7 +1311,7 @@ export const courses: Course[] = [
     duration: '5 місяців',
     price: 600,
     description: 'Поглиблене вивчення іспанської мови та культури',
-    instructor: 'Степанова Ірина',
+    instructor: 'Максим Кравчук',
     studentsCount: 18,
     schedule: [
       { id: 's8', courseId: '4', dayOfWeek: 'Вівторок', time: '19:30', duration: 120, type: 'Лекція' },
@@ -1436,7 +1437,7 @@ export const courses: Course[] = [
     duration: '3 місяці',
     price: 550,
     description: 'Спеціалізований курс для працевлаштування в Польщі',
-    instructor: 'Курило Володимир',
+    instructor: 'Наталія Савченко',
     studentsCount: 40,
     schedule: [
       { id: 's10', courseId: '5', dayOfWeek: 'Понеділок', time: '18:00', duration: 90, type: 'Лекція' },
@@ -1577,7 +1578,7 @@ export const courses: Course[] = [
     duration: '3 місяці',
     price: 500,
     description: 'Основи італійської мови та культури',
-    instructor: 'Ільницький Денис',
+    instructor: 'Дмитро Ковальчук',
     studentsCount: 22,
     schedule: [
       { id: 's12', courseId: '6', dayOfWeek: 'Вівторок', time: '18:00', duration: 90, type: 'Лекція' },
@@ -2007,71 +2008,82 @@ export const courses: Course[] = [
 export const instructors: Instructor[] = [
   {
     id: '1',
-    name: 'Олена Петренко',
+    name: 'Оксана Шевченко',
     language: 'Англійська',
     specialization: 'Англійська мова',
     experience: '8+ років',
     rating: 4.9,
     students: 120,
-    description: 'Сертифікований викладач з 8-річним досвідом. Спеціалізується на викладанні англійської для дорослих.',
-    bio: 'Сертифікований викладач з 8-річним досвідом. Спеціалізується на викладанні англійської для дорослих.'
+    description: 'Викладає англійську для дорослих. Готує до розмови, роботи та іспитів.',
+    bio: 'Викладає англійську для дорослих. Готує до розмови, роботи та іспитів.'
   },
   {
     id: '2',
-    name: 'Марія Коваленко',
+    name: 'Андрій Бондаренко',
     language: 'Німецька',
     specialization: 'Німецька мова',
     experience: '10+ років',
     rating: 4.8,
     students: 95,
-    description: 'Досвідчений викладач німецької мови, має ступінь магістра з германістики.',
-    bio: 'Досвідчений викладач німецької мови, має ступінь магістра з германістики.'
+    description: 'Німецька для роботи й навчання. Пояснює граматику без зайвої теорії.',
+    bio: 'Німецька для роботи й навчання. Пояснює граматику без зайвої теорії.'
   },
   {
     id: '3',
-    name: 'Анна Сидоренко',
+    name: 'Ірина Ткаченко',
     language: 'Французька',
     specialization: 'Французька мова',
     experience: '6+ років',
     rating: 4.7,
     students: 85,
-    description: 'Носій французької культури, викладає французьку мову з акцентом на практичне застосування.',
-    bio: 'Носій французької культури, викладає французьку мову з акцентом на практичне застосування.'
+    description: 'Французька для подорожей і щоденного спілкування.',
+    bio: 'Французька для подорожей і щоденного спілкування.'
   },
   {
     id: '4',
-    name: 'Олександр Мельник',
+    name: 'Максим Кравчук',
     language: 'Іспанська',
     specialization: 'Іспанська мова',
     experience: '12+ років',
     rating: 5.0,
     students: 150,
-    description: 'Професор іспанської мови з багаторічним досвідом викладання в університеті.',
-    bio: 'Професор іспанської мови з багаторічним досвідом викладання в університеті.'
+    description: 'Іспанська мова та культура. Працює з середнім і продвинутим рівнем.',
+    bio: 'Іспанська мова та культура. Працює з середнім і продвинутим рівнем.'
   },
   {
     id: '5',
-    name: 'Тетяна Лисенко',
+    name: 'Наталія Савченко',
     language: 'Польська',
     specialization: 'Польська мова',
     experience: '7+ років',
     rating: 4.9,
     students: 110,
-    description: 'Спеціалізується на польській мові для бізнесу та працевлаштування.',
-    bio: 'Спеціалізується на польській мові для бізнесу та працевлаштування.'
+    description: 'Польська для роботи, документів і побуту.',
+    bio: 'Польська для роботи, документів і побуту.'
   },
   {
     id: '6',
-    name: 'Вікторія Гриценко',
+    name: 'Дмитро Ковальчук',
     language: 'Італійська',
     specialization: 'Італійська мова',
     experience: '5+ років',
     rating: 4.8,
     students: 75,
-    description: 'Молодий та енергійний викладач італійської мови з сучасними методиками навчання.',
-    bio: 'Молодий та енергійний викладач італійської мови з сучасними методиками навчання.'
+    description: 'Італійська з нуля: вимова, база і жива практика.',
+    bio: 'Італійська з нуля: вимова, база і жива практика.'
   }
 ];
+
+courses.forEach((course) => {
+  const extraDescription = extraCourseDescriptions[course.id];
+  if (extraDescription) {
+    course.description = extraDescription;
+  }
+  const extraTopics = extraTopicsByCourse[course.id];
+  if (extraTopics?.length) {
+    course.roadmap = [...(course.roadmap || []), ...extraTopics];
+  }
+});
 
 export const languages = ['Англійська', 'Німецька', 'Французька', 'Іспанська', 'Польська', 'Італійська', 'Українська'];
 

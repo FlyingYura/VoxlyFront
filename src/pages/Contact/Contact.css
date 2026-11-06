@@ -1,7 +1,7 @@
-.contact-page {
+﻿.contact-page {
   min-height: 100vh;
   padding: 2rem 0;
-  background: #d4cec4;
+  background: var(--bg);
 }
 
 .contact-header {
@@ -13,7 +13,7 @@
 .contact-header h1 {
   font-size: 3rem;
   margin: 0 0 1rem 0;
-  color: #2c3e50;
+  color: var(--text);
   font-weight: 700;
   position: relative;
   padding-bottom: 1rem;
@@ -28,13 +28,13 @@
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #8B7355 0%, #9B8366 100%);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
   border-radius: 2px;
 }
 
 .contact-header p {
   font-size: 1.25rem;
-  color: #5a5a5a;
+  color: var(--muted);
   margin: 0;
 }
 
@@ -54,7 +54,7 @@
 .contact-form-section h2,
 .contact-info-card h2 {
   margin: 0 0 2rem 0;
-  color: #2c3e50;
+  color: var(--text);
   font-size: 1.75rem;
   font-weight: 700;
 }
@@ -68,8 +68,8 @@
   padding: 2rem;
   text-align: center;
   background: rgba(139, 115, 85, 0.1);
-  border-radius: 12px;
-  color: #8B7355;
+  border-radius: var(--radius);
+  color: var(--accent);
   border: 2px solid rgba(139, 115, 85, 0.3);
   box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
 }
@@ -88,13 +88,13 @@
 .contact-info-card h2 {
   margin-bottom: 2.5rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid #e8e5e0;
+  border-bottom: 2px solid var(--border);
 }
 
 .info-item {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #e8e5e0;
+  border-bottom: 1px solid var(--border);
 }
 
 .info-item:last-child {
@@ -105,27 +105,27 @@
 
 .info-content h3 {
   margin: 0 0 0.75rem 0;
-  color: #2c3e50;
+  color: var(--text);
   font-size: 1.25rem;
   font-weight: 600;
 }
 
 .info-content p {
   margin: 0.5rem 0;
-  color: #5a5a5a;
+  color: var(--muted);
   line-height: 1.6;
   font-size: 1rem;
 }
 
 .info-content a {
-  color: #8B7355;
+  color: var(--accent);
   text-decoration: none;
   transition: all 0.3s ease;
   font-weight: 500;
 }
 
 .info-content a:hover {
-  color: #2c3e50;
+  color: var(--text);
   text-decoration: underline;
 }
 

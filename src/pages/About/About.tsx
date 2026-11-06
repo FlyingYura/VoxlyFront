@@ -1,70 +1,9 @@
 import React from 'react';
 import InstructorCard from '../../components/InstructorCard/InstructorCard';
+import { instructors } from '../../utils/data';
 import './About.css';
 
 const About: React.FC = () => {
-  const aboutInstructors = [
-    {
-      id: '1',
-      name: 'Яджак Роксолана',
-      language: 'Англійська',
-      experience: '5+ років',
-      rating: 4.9,
-      students: 120,
-      description: 'Сертифікований викладач з міжнародним досвідом',
-      image: '/assets/roksa.jpg'
-    },
-    {
-      id: '2',
-      name: 'Криворучко Микола',
-      language: 'Німецька',
-      experience: '7+ років',
-      rating: 4.8,
-      students: 95,
-      description: 'Носій мови, експерт з підготовки до Goethe-Zertifikat',
-      image: '/assets/kolya.jpg'
-    },
-    {
-      id: '3',
-      name: 'Кіліан Мбаппе',
-      language: 'Французька',
-      experience: '4+ років',
-      rating: 4.7,
-      students: 85,
-      description: 'Носій французької мови, спеціаліст з розмовної практики',
-      image: '/assets/mbap.png'
-    },
-    {
-      id: '4',
-      name: 'Степанова Ірина',
-      language: 'Іспанська',
-      experience: '6+ років',
-      rating: 4.8,
-      students: 110,
-      description: 'Носій іспанської мови, досвід роботи в Іспанії',
-      image: '/assets/ira.png'
-    },
-    {
-      id: '5',
-      name: 'Курило Володимир',
-      language: 'Польська',
-      experience: '5+ років',
-      rating: 4.6,
-      students: 75,
-      description: 'Спеціаліст з польської мови та культури',
-      image: '/assets/volod.png'
-    },
-    {
-      id: '6',
-      name: 'Ільницький Денис',
-      language: 'Італійська',
-      experience: '4+ років',
-      rating: 5,
-      students: 80,
-      description: 'Носій італійської мови, досвід викладання в Італії',
-      image: '/assets/den.jpg'
-    }
-  ];
 
   return (
     <div className="about-page">
@@ -159,7 +98,7 @@ const About: React.FC = () => {
             у вивченні мов.
           </p>
           <div className="instructors-grid">
-            {aboutInstructors.map((instructor) => (
+            {instructors.map((instructor) => (
               <InstructorCard key={instructor.id} instructor={instructor} />
             ))}
           </div>

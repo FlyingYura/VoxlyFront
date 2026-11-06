@@ -8,69 +8,21 @@ interface InstructorCardProps {
 }
 
 const InstructorCard: React.FC<InstructorCardProps> = ({ instructor }) => {
-  const renderStars = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
-
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<span key={i} className="star filled">★</span>);
-    }
-
-    if (hasHalfStar) {
-      stars.push(<span key="half" className="star half">★</span>);
-    }
-
-    const emptyStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<span key={`empty-${i}`} className="star">☆</span>);
-    }
-
-    return stars;
-  };
-
   const formatStudents = (students: number) => {
-    return students >= 1000 ? `${(students/1000).toFixed(1)}k+` : `${students}+`;
+    return students >= 1000 ? `${(students / 1000).toFixed(1)}k+` : `${students}+`;
   };
 
   return (
-    <Card className="instructor-card">
+    <Card className="instructor-card card-no-hover">
       <div className="instructor-photo-container">
-        {instructor.image ? (
-          <img 
-            src={instructor.image} 
-            alt={instructor.name}
-            className="instructor-photo"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement?.insertAdjacentHTML(
-                'beforeend', 
-                `<div class="instructor-fallback" data-initial="${instructor.name.charAt(0)}">${instructor.name.charAt(0)}</div>`
-              );
-            }}
-          />
-        ) : (
-          <div 
-            className="instructor-fallback" 
-            data-initial={instructor.name.charAt(0)}
-          >
-            {instructor.name.charAt(0)}
-          </div>
-        )}
+        <div className="instructor-fallback">
+          {instructor.name.charAt(0)}
+        </div>
       </div>
-      
+
       <div className="instructor-info">
         <h3 className="instructor-name">{instructor.name}</h3>
-        
-        <div className="instructor-language">{instructor.language} мова</div>
-        
-        <div className="instructor-rating">
-          <div className="stars">
-            {renderStars(instructor.rating)}
-          </div>
-          <span className="rating-value">{instructor.rating.toFixed(1)}</span>
-        </div>
-        
+        <div className="instructor-language">{instructor.language}</div>
         <div className="instructor-details">
           <div className="experience-item">
             <span className="experience-label">Досвід</span>
@@ -81,7 +33,6 @@ const InstructorCard: React.FC<InstructorCardProps> = ({ instructor }) => {
             <span className="students-value">{formatStudents(instructor.students)}</span>
           </div>
         </div>
-        
         <p className="instructor-description">{instructor.description || instructor.bio}</p>
       </div>
     </Card>

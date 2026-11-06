@@ -20,54 +20,43 @@ const Header: React.FC = () => {
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <img 
-            src="/assets/voxly.png" 
-            alt="Voxly - Мовна Школа" 
+          <img
+            src="/assets/voxly.png"
+            alt="Voxly - Мовна Школа"
             className="logo-image"
           />
         </Link>
-        
+
         <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
-          <Link 
-            to="/courses" 
+          <Link
+            to="/courses"
             className={`nav-link ${isActive('/courses') ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(false)}
           >
             Курси
           </Link>
-          <Link 
-            to="/about" 
+          <Link
+            to="/about"
             className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(false)}
           >
             Про нас
           </Link>
-          <Link 
-            to="/contact" 
+          <Link
+            to="/contact"
             className={`nav-link ${isActive('/contact') ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(false)}
           >
             Контакти
           </Link>
-          {isAuthenticated() && (
-            <>
-              <Link 
-                to="/my-courses" 
-                className={`nav-link ${isActive('/my-courses') ? 'active' : ''}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Мої курси
-              </Link>
-              {user && (user.enrolledCourses?.length > 0 || user.paidCourses?.length > 0) && (
-                <Link 
-                  to="/schedule" 
-                  className={`nav-link ${isActive('/schedule') ? 'active' : ''}`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Розклад
-                </Link>
-              )}
-            </>
+          {isAuthenticated() && user && (user.enrolledCourses?.length > 0 || user.paidCourses?.length > 0) && (
+            <Link
+              to="/schedule"
+              className={`nav-link ${isActive('/schedule') ? 'active' : ''}`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Розклад
+            </Link>
           )}
         </nav>
 
@@ -88,7 +77,7 @@ const Header: React.FC = () => {
               </Link>
             </>
           )}
-          <button 
+          <button
             className="menu-toggle"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
