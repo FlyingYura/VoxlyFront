@@ -4,6 +4,7 @@ import './Header.css';
 import Button from '../Button/Button';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
 import { getCurrentUser, isAuthenticated } from '../../utils/auth';
+import logoImage from '../../assets/logo-dmtfc.png';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,8 +44,8 @@ const Header: React.FC = () => {
       <div className="header-container">
         <Link to="/" className="logo">
           <img
-            src="/assets/voxly.png"
-            alt="Voxly - Мовна Школа"
+            src={logoImage}
+            alt="Language School Drohobych"
             className="logo-image"
           />
         </Link>

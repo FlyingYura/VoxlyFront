@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>VOXLY</h3>
+          <h3>Language School Drohobych</h3>
           <p>Мовна школа в Дрогобичі</p>
         </div>
 
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {currentYear} VOXLY. Всі права захищені.</p>
+        <p>&copy; {currentYear} Language School Drohobych. Всі права захищені.</p>
       </div>
     </footer>
   );

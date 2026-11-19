@@ -10,7 +10,7 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
-const STORAGE_KEY = 'voxly-theme';
+const STORAGE_KEY = 'lsd-theme';
 
 function readStoredTheme(): ThemeName {
   try {
